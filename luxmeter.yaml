@@ -1,3 +1,10 @@
+---
+# Luxmeter
+#
+# a simple ESPHome integration to make an luxmeter
+# © Maarten Schmeitz
+#
+
 esphome:
   name: project-template
   friendly_name: Project Template

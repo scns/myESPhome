@@ -1,6 +1,6 @@
 # About
 
-Add some information about your project here.
+In dit project komt de code te staan voor mijn LuxMeter.
 
 # Installation
 

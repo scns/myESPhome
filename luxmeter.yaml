@@ -23,7 +23,6 @@ esphome:
     version: "${project_version}"
 
 esp32:
-  platform: ESP8266
   board: d1_mini
 
 # To be able to get logs from the device via serial and api.

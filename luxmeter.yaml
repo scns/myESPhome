@@ -4,18 +4,28 @@
 # a simple ESPHome integration to make an luxmeter
 # © Maarten Schmeitz
 #
+substitutions:
+  device_name: home-assistant-luxmeter
+  friendly_name: Home Assistant LuxMeter
+  project_version: "0.0.1"
+  device_description: "A simple project luxmeter - ESP8266 Generic"
+
 
 esphome:
-  name: project-template
-  friendly_name: Project Template
+  name: '${device_name}'
+  friendly_name: '${device_description}'
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
   name_add_mac_suffix: true
+  name_add_mac_suffix: true
+  min_version: 2024.6.0
+  project:
+    name: "scns.myESPHome"
+    version: "${project_version}"
 
 esp32:
-  board: esp32dev
-  framework:
-    type: esp-idf
+  platform: ESP8266
+  board: d1_mini
 
 # To be able to get logs from the device via serial and api.
 logger:

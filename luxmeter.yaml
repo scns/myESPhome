@@ -22,8 +22,9 @@ esphome:
     name: "scns.myESPHome"
     version: "${project_version}"
 
-esp32:
-  board: d1_mini
+esp8266:
+  board:  d1_mini
+  restore_from_flash: true
 
 # To be able to get logs from the device via serial and api.
 logger:

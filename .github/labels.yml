@@ -2,6 +2,9 @@
 - name: "breaking-change"
   color: ee0701
   description: "A breaking change for existing users."
+- name: "major-change"
+  color: ee0701
+  description: "A major change for all users."  
 - name: "bugfix"
   color: ee0701
   description: "Inconsistencies or issues which will cause a problem for users or implementors."
@@ -78,15 +81,6 @@
   description: "Nice addition, maybe... someday..."
 
 # platforms
-- name: s0tool
-  description: s0tool-specific issue
+- name: luxmeter
+  description: luxmeter-specific issue
   color: a1887f
-- name: watermeter
-  description: watermeter-specific issue
-  color: a1887f
-- name: kwh s0
-  description: kWh-s0-specific issue
-  color: a1887f
-- name: documentation
-  description: documentation-specific issue
-  color: a1887f  

@@ -16,7 +16,7 @@ jobs:
       max-parallel: 3
       matrix:
         file:
-          - esphome/luxmeter.yaml
+          - esphome/luxmeter
         esphome-version:
           - stable
           - beta

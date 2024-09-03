@@ -49,6 +49,6 @@ packages:
     url: https://github.com/scns/myESPhome
     ref: main
     files:
-      - package/basis.yaml
-      - package/lightsensor.yaml
+      - esphome/package/basis.yaml
+      - esphome/package/lightsensor.yaml
     refresh: 0s

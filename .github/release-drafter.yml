@@ -62,7 +62,7 @@ template: |
 
   $CHANGES
 
-  **Full Changelog**: https://github.com/$REPOSITORY/compare/$PREVIOUS_TAG...$LATEST_TAG
+  **Full Changelog**: https://github.com/scns/myESPhome/compare/$PREVIOUS_TAG...$LATEST_TAG
 
   ## Contributors
 

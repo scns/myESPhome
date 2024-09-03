@@ -32,5 +32,5 @@ jobs:
       - name: ESPHome ${{ matrix.esphome-version }} Factory
         uses: esphome/build-action@v4.0.1
         with:
-          yaml-file: ${{ matrix.file }}.factory.yaml
+          yaml-file: ${{ matrix.file }}.yaml
           version: ${{ matrix.esphome-version }}

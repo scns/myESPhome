@@ -1,3 +1,6 @@
+substitutions:
+  project_version: "0.0.1"
+
 preferences:
   flash_write_interval: 120min 
 

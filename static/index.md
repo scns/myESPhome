@@ -7,9 +7,9 @@ In dit project komt de code te staan voor mijn LuxMeter.
 You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
 
 ## Version 2
-
+schmm
 ## Version 3
-
+schmm
 ## Version 4
 
 ## Version 5

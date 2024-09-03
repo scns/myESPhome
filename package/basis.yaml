@@ -37,7 +37,7 @@ sensor:
     entity_category: diagnostic
     lambda: |-
       static float timestamp = (
-        id(time_homeassistant).utcnow().timestamp - id(${name}_uptime).state
+        id(time_homeassistant).utcnow().timestamp - id(${device_name}_uptime).state
       );
       return timestamp;  
 

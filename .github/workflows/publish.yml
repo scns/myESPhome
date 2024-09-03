@@ -37,7 +37,7 @@ jobs:
           source: ./static
           destination: ./output
       - name: Upload
-        uses: actions/upload-artifact@v4.3.6
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: site
           path: output

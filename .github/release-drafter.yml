@@ -39,7 +39,7 @@ exclude-labels:
 version-resolver:
   major:
     labels:
-      - "major"
+      - "major-change"
       - "breaking-change"
   minor:
     labels:

@@ -8,7 +8,7 @@ substitutions:
   device_name: home_assistant_luxmeter
   friendly_name: Home Assistant LuxMeter
   device_description: "A simple project luxmeter - ESP8266 Generic"
-  vdate: "v2024.08.01DEV" 
+  vdate: "v2024.08.01test" 
   date: "29.08.2024"
 
 esphome:

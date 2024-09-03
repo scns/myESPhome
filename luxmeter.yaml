@@ -9,7 +9,8 @@ substitutions:
   friendly_name: Home Assistant LuxMeter
   project_version: "0.0.1"
   device_description: "A simple project luxmeter - ESP8266 Generic"
-
+  vdate: "v2024.08.01DEV" 
+  date: "29.08.2024"
 
 esphome:
   name: '${device_name}'
@@ -43,3 +44,12 @@ wifi:
 # In combination with the `ap` this allows the user
 # to provision wifi credentials to the device.
 captive_portal:
+
+packages:
+  remote_package:
+    url: https://github.com/scns/myESPhome
+    ref: main
+    files:
+      - package/basis.yaml
+      - package/lightsensor.yaml
+    refresh: 0s

@@ -1,0 +1,69 @@
+preferences:
+  flash_write_interval: 120min 
+
+improv_serial:
+  
+
+web_server:
+  port: 80
+  
+captive_portal:
+
+ota:
+
+# ⬇ Enable logging ⬇ # 
+logger:
+  level: INFO
+  esp8266_store_log_strings_in_flash: false
+
+time:
+- platform: homeassistant
+  id: time_homeassistant
+  on_time_sync:
+    - component.update: ${device_name}_uptime_timestamp  
+
+sensor:
+#------------------------#  sensoren #------------------------#
+  - platform: uptime
+    id: ${device_name}_uptime
+
+  - platform: template
+    id: ${device_name}_uptime_timestamp
+    name: "${device_name} online sinds"
+    device_class: "timestamp"
+    accuracy_decimals: 0
+    update_interval: never
+    icon: 'mdi:clock-start'
+    entity_category: diagnostic
+    lambda: |-
+      static float timestamp = (
+        id(time_homeassistant).utcnow().timestamp - id(${name}_uptime).state
+      );
+      return timestamp;  
+
+# ⬇ versie verbinding informatie sensoren voor in ha ⬇ #
+  # WiFi signal
+  - platform: wifi_signal
+    name: "${device_name} - WiFi Signal"
+    update_interval: 120s
+    
+text_sensor:
+  - platform: template
+    name: "${device_name}_versie"
+    id: ${device_name}_versie
+    icon: 'mdi:alpha-v-circle-outline' 
+    update_interval: 6h
+    entity_category: diagnostic
+    lambda: |-
+      return {"${vdate}"};
+
+  - platform: wifi_info
+    ip_address:
+      name: "${device_name} IP-adres"
+      id: ${device_name}_ip_adres
+      icon: mdi:ip-network
+
+    mac_address:
+      name: "${device_name} Mac-adres"
+      id: ${device_name}_mac_adres
+      icon: mdi:folder-key-network-outline

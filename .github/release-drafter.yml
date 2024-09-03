@@ -4,6 +4,9 @@ change-template: "- #$NUMBER $TITLE @$AUTHOR"
 sort-direction: ascending
 
 categories:
+  - title: "🚨 Major Release 🚨"
+    labels:
+      - "major"
   - title: "🚨 Breaking changes"
     labels:
       - "breaking-change"

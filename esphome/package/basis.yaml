@@ -76,3 +76,5 @@ text_sensor:
 switch:
   - platform: safe_mode
     name: "${device_name} Restart (Safe Mode)"
+  - platform: restart
+    name: "${device_name} Restart"

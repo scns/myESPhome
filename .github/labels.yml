@@ -32,6 +32,9 @@
 - name: "dependencies"
   color: 1d76db
   description: "Upgrade or downgrade of project dependencies."
+- name: update-to-ghpage
+  color: 2af79e
+  description: "update the github webpage with new firmware"
 
 - name: "in-progress"
   color: fbca04
@@ -59,13 +62,6 @@
 - name: "help-wanted"
   color: 0e8a16
   description: "We need some extra helping hands or expertise in order to resolve this."
-
-- name: "hacktoberfest"
-  description: "Issues/PRs are participating in the Hacktoberfest."
-  color: fbca04
-- name: "hacktoberfest-accepted"
-  description: "Issues/PRs are participating in the Hacktoberfest."
-  color: fbca04
 
 - name: "priority-critical"
   color: ee0701

@@ -27,8 +27,10 @@ time:
   on_time_sync:
     - component.update: ${device_name}_uptime_timestamp  
 
-sensor:
+# ⬇ versie verbinding informatie sensoren voor in ha ⬇ #
 #------------------------#  sensoren #------------------------#
+sensor:
+
   - platform: uptime
     id: ${device_name}_uptime
 
@@ -46,12 +48,14 @@ sensor:
       );
       return timestamp;  
 
-# ⬇ versie verbinding informatie sensoren voor in ha ⬇ #
+
   # WiFi signal
   - platform: wifi_signal
     name: "${device_name} - WiFi Signal"
     update_interval: 120s
-    
+
+# ⬇ versie verbinding informatie text_sensoren voor in ha ⬇ #
+#------------------------#  text_sensoren #------------------------#
 text_sensor:
   - platform: template
     name: "${device_name}_versie"
@@ -73,8 +77,17 @@ text_sensor:
       id: ${device_name}_mac_adres
       icon: mdi:folder-key-network-outline
 
+# ⬇ versie verbinding informatie switches voor in ha ⬇ #
+#------------------------#  switches #------------------------#
+
 switch:
   - platform: safe_mode
     name: "${device_name} Restart (Safe Mode)"
+
+
+# ⬇ versie verbinding informatie buttons voor in ha ⬇ #
+#------------------------#  buttons #------------------------#
+
+button:
   - platform: restart
     name: "${device_name} Restart"

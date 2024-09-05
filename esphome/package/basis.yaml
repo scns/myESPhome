@@ -6,6 +6,7 @@ preferences:
 
 improv_serial:
   
+safe_mode:
 
 web_server:
   version: 3
@@ -71,3 +72,7 @@ text_sensor:
       name: "${device_name} Mac-adres"
       id: ${device_name}_mac_adres
       icon: mdi:folder-key-network-outline
+
+switch:
+  - platform: safe_mode
+    name: "${device_name} Restart (Safe Mode)"

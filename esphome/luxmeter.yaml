@@ -45,7 +45,7 @@ wifi:
 captive_portal:
 
 dashboard_import:
-  package_import_url: github://scns/myESPhome/esphome/luxmeter.yaml
+  package_import_url: github://scns/myESPhome/esphome/luxmeter.yaml@main
 
 packages:
   remote_package:

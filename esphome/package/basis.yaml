@@ -1,5 +1,5 @@
 substitutions:
-  project_version: "0.0.1"
+  project_version: "1.2.1"
 
 preferences:
   flash_write_interval: 120min 

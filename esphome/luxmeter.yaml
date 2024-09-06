@@ -28,7 +28,6 @@ esp8266:
 
 dashboard_import:
   package_import_url: github://scns/myESPhome/esphome/luxmeter.yaml
-  import_full_config: false 
 
 # To be able to get logs from the device via serial and api.
 logger:

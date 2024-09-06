@@ -53,5 +53,5 @@ packages:
     ref: main
     files:
       - esphome/package/basis.yaml
-      - esphome/package/lightsensor.yaml
+      - esphome/package/luxmeter.yaml
     refresh: 0s

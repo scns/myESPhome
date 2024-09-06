@@ -27,7 +27,7 @@ esp8266:
   restore_from_flash: true
 
 dashboard_import:
-  package_import_url: github://github.com/scns/myESPhome/esphome/luxmeter.yaml@main
+  package_import_url: github://github.com/scns/myESPhome/esphome/luxmeter.yaml
   import_full_config: false 
 
 # To be able to get logs from the device via serial and api.

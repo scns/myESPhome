@@ -16,6 +16,6 @@ schmm
 ## Version 5
 schmm
 <esp-web-install-button manifest=".myesphome-luxmeter-manifest.json"> Install Luxmeter</esp-web-install-button>
-<esp-web-install-button manifest="./myesphome-luxmeter1-manifest..json"> Install Luxmeter 1</esp-web-install-button>
+<esp-web-install-button manifest="./myesphome-luxmeter1-manifest.json"> Install Luxmeter 1</esp-web-install-button>
 
 <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>

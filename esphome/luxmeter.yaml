@@ -5,7 +5,7 @@
 # © Maarten Schmeitz
 #
 substitutions:
-  device_name: "myESPhome luxmeter"
+  device_name: "myESPhome_luxmeter"
   
 esphome:
   name: '${device_name}'

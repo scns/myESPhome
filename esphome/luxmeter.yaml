@@ -29,7 +29,8 @@ packages:
     url: https://github.com/scns/myESPhome
     ref: main
     files:
+      - esphome/package/luxmeter_update.yaml
       - esphome/package/basis.yaml
       - esphome/package/luxmeter.yaml
-      - esphome/package/luxmeter_update.yaml
+
     refresh: 0s

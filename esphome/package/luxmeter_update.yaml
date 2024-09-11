@@ -1,0 +1,5 @@
+update:
+  - platform: http_request
+    name: Firmware Update
+    id: update_http_request
+    source: https://scns.github.io/myESPhome/myesphome-luxmeter-manifest.json

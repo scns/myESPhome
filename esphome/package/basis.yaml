@@ -1,5 +1,5 @@
 substitutions:
-  project_version: "2.0.2"
+  project_version: "2.0.3"
   device_description: "${device_name} build by Maarten Schmeitz (scns). Version ${project_version}.(https://github.com/scns)"
   date: "11-09-2024"
 
@@ -93,11 +93,6 @@ text_sensor:
       icon: mdi:folder-key-network-outline
 
 # ⬇ versie verbinding informatie switches voor in ha ⬇ #
-#------------------------#  switches #------------------------#
-
-switch:
-  - platform: safe_mode
-    name: "${device_name} Restart (Safe Mode)"
 
 
 # ⬇ versie verbinding informatie buttons voor in ha ⬇ #

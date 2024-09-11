@@ -79,7 +79,7 @@ text_sensor:
     update_interval: 6h
     entity_category: diagnostic
     lambda: |-
-      return {"${vdate}"};
+      return {"${project_version}"};
 
   - platform: wifi_info
     ip_address:

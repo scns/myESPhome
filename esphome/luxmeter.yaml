@@ -20,6 +20,9 @@ esp8266:
   board:  d1_mini
   restore_from_flash: true
 
+wifi:
+  ap:
+
 dashboard_import:
   package_import_url: github://scns/myESPhome/esphome/luxmeter.yaml
 

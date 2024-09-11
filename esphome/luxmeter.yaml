@@ -25,6 +25,12 @@ wifi:
 
 api:
 
+ota:
+  - platform: esphome
+    id: ota_esphome
+  - platform: http_request
+    id: ota_http_request
+
 dashboard_import:
   package_import_url: github://scns/myESPhome/esphome/luxmeter.yaml
 

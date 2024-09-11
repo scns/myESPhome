@@ -122,7 +122,7 @@ button:
 
   - platform: template
     id: check_for_update_button
-    name: ${device_mode} Check for firmware update
+    name: ${device_name} Check for firmware update
     device_class: update
     on_press:
       then:

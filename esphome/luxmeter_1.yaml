@@ -1,0 +1,34 @@
+---
+# Luxmeter
+#
+# a simple ESPHome integration to make an luxmeter
+# © Maarten Schmeitz
+#
+substitutions:
+  device_name: luxmeter
+  
+esphome:
+  name: '${device_name}'
+  name_add_mac_suffix: true
+  comment: '${device_description}'
+  project:
+    name: "scns.myESPHome_${device_name}"
+    version: "${project_version}"
+  min_version: 2024.6.0
+
+esp8266:
+  board:  d1_mini
+  restore_from_flash: true
+
+
+dashboard_import:
+  package_import_url: github://scns/myESPhome/esphome/luxmeter.yaml
+
+packages:
+  remote_package:
+    url: https://github.com/scns/myESPhome
+    ref: main
+    files:
+      - esphome/package/basis.yaml
+      - esphome/package/luxmeter.yaml
+    refresh: 0s

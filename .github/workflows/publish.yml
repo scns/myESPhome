@@ -19,6 +19,8 @@ jobs:
     with:
       files: |
         esphome/luxmeter.yaml
+        esphome/luxmeter_1.yaml
+        
       esphome-version: 2024.7.3
       combined-name: firmware
       release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}

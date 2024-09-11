@@ -12,7 +12,7 @@ esphome:
   name_add_mac_suffix: true
   comment: '${device_description}'
   project:
-    name: "scns.myESPHome.${device_name}"
+    name: "scns.myESPHome_${device_name}"
     version: "${project_version}"
   min_version: 2024.6.0
 

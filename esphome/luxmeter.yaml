@@ -23,6 +23,8 @@ esp8266:
 wifi:
   ap:
 
+api:
+
 dashboard_import:
   package_import_url: github://scns/myESPhome/esphome/luxmeter.yaml
 

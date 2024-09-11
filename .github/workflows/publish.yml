@@ -28,8 +28,8 @@ jobs:
             name: myesphome-luxmeter1
             manifest_filename: myesphome-luxmeter1-manifest.json
           
-
       fail-fast: false
+      
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
@@ -81,12 +81,31 @@ jobs:
         uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: output
+  
+  build-site:
+    name: Build Site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4.1.7
+      - name: Build
+        uses: actions/jekyll-build-pages@v1.0.13
+        with:
+          source: ./static
+          destination: ./output
+      - name: Upload
+        uses: actions/upload-artifact@v4.3.6
+        with:
+          name: site
+          path: output
 
   deploy:
    # if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     name: Deploy to GitHub Pages 🚀
     runs-on: ubuntu-latest
-    needs: consolidate
+    needs: 
+          - consolidate
+          -  build-site
     permissions:
       pages: write
       id-token: write

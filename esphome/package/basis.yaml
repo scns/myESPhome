@@ -15,8 +15,7 @@ web_server:
   port: 80
 
 wifi:
-
-ap:
+  ap:
   
 captive_portal:
 

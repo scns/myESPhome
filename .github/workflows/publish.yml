@@ -24,9 +24,9 @@ jobs:
           - file: esphome/luxmeter.yaml
             name: myesphome-luxmeter
             manifest_filename: myesphome-luxmeter-manifest.json
-          - file: esphome/luxmeter_1.yaml
-            name: myesphome-luxmeter1
-            manifest_filename: myesphome-luxmeter1-manifest.json
+        #  - file: esphome/luxmeter_1.yaml
+        #    name: myesphome-luxmeter1
+        #    manifest_filename: myesphome-luxmeter1-manifest.json
           
       fail-fast: false
       

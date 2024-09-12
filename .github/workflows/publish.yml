@@ -42,11 +42,11 @@ jobs:
 
       - name: 🔨 Build firmware 🔨
         uses: esphome/build-action@v4.0.2
-        id: esphome-build
         with:
-          yaml_file: ${{ matrix.firmware.file }}
+          yaml-file: ${{ matrix.firmware.file }}
           version: 2024.8.3
-          release_url: ${{ github.event.release.html_url || env.RELEASE_URL }}
+        id: esphome-build
+  
 
       - name: 🔨 Copy firmware and manifest 🔨
         run: |

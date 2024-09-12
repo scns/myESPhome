@@ -1,5 +1,5 @@
 substitutions:
-  project_version: "2.0.6"
+  project_version: "2.0.7"
   device_description: "${device_name} build by Maarten Schmeitz (scns). Version ${project_version}.(https://github.com/scns)"
   date: "11-09-2024"
 
@@ -114,7 +114,7 @@ button:
     name: "${device_name} Safe Mode"
     entity_category: diagnostic
     disabled_by_default: True
-    
+
   - platform: template
     id: check_for_update_button
     name: ${device_name} Check for firmware update

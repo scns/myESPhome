@@ -30,7 +30,6 @@ packages:
     ref: main
     files:
       - esphome/package/luxmeter_update.yaml
-      - esphome/package/basis.yaml
       - esphome/package/luxmeter.yaml
-
+      - esphome/package/basis.yaml
     refresh: 0s

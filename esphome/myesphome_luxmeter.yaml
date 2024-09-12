@@ -5,11 +5,11 @@
 # © Maarten Schmeitz
 #
 substitutions:
-  device_name: "luxmeter"
+  device_name: "luxmeter-testname"
   
 esphome:
   name: '${device_name}'
-  name_add_mac_suffix: false
+  name_add_mac_suffix: true
   comment: '${device_description}'
   project:
     name: "scns.myESPHome_${device_name}"

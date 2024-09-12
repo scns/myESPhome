@@ -1,5 +1,5 @@
 substitutions:
-  project_version: "2.0.7"
+  project_version: "2.0.8"
   device_description: "${device_name} build by Maarten Schmeitz (scns). Version ${project_version}.(https://github.com/scns)"
   date: "11-09-2024"
 

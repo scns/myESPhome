@@ -3,12 +3,3 @@ update:
     name: Firmware Update
     id: update_http_request
     source: https://scns.github.io/myESPhome/myesphome-luxmeter-manifest.json
-
-button:
-  - platform: template
-    id: check_for_update_button
-    name: ${device_name} Check for firmware update
-    device_class: update
-    on_press:
-      then:
-        - component.update: update_http_request

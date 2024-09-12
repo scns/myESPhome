@@ -16,16 +16,18 @@ jobs:
   build-firmware:
     name: Build Firmware
     uses: esphome/workflows/.github/workflows/build.yml@main
-    with:
-      files: |
-        esphome/luxmeter.yaml
-        esphome/luxmeter_1.yaml
+    strategy:
+      matrix:
+        firmware:
+          - file: esphome/luxmeter.yaml
+            name: "myesphome-luxmeter 🔨"
+            manifest_filename: myesphome-luxmeter-manifest.json
         
-      esphome-version: 2024.8.3
-      combined-name: firmware
-      release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}
-      release-url: ${{ github.event_name == 'release' && github.event.release.html_url || '' }}
-      release-version: ${{ (github.event_name == 'release' && github.event.release.tag_name) || (github.event_name == 'workflow_dispatch' && inputs.version) || '' }}
+      #esphome-version: 2024.8.3
+      #combined-name: firmware
+      #release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}
+      #release-url: ${{ github.event_name == 'release' && github.event.release.html_url || '' }}
+      #release-version: ${{ (github.event_name == 'release' && github.event.release.tag_name) || (github.event_name == 'workflow_dispatch' && inputs.version) || '' }}
 
   build-site:
     name: Build Site

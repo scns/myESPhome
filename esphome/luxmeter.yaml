@@ -5,7 +5,7 @@
 # © Maarten Schmeitz
 #
 substitutions:
-  device_name: "luxmetertestname"
+  device_name: "luxmeter"
   
 esphome:
   name: '${device_name}'
@@ -31,5 +31,5 @@ packages:
     files:
       - esphome/package/luxmeter_update.yaml
       - esphome/package/luxmeter.yaml
-      - esphome/package/basis.yaml
+      - esphome/package/basis_settings.yaml
     refresh: 0d

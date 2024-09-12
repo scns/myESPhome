@@ -21,9 +21,9 @@ jobs:
     strategy:
       matrix:
         firmware:
-          - file: esphome/myesphome_luxmeter.yaml
+          - file: esphome/luxmeter.yaml
             name: "myesphome-luxmeter 🔨"
-            manifest_filename: luxmetertestname-esp8266/myesphome-luxmeter-manifest.json
+            manifest_filename: luxmeter-esp8266/myesphome-luxmeter-manifest.json
         #  - file: esphome/luxmeter_1.yaml
         #    name: myesphome-luxmeter1S
         #    manifest_filename: myesphome-luxmeter1-manifest.json

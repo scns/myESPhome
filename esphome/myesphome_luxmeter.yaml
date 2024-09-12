@@ -32,4 +32,4 @@ packages:
       - esphome/package/luxmeter_update.yaml
       - esphome/package/luxmeter.yaml
       - esphome/package/basis.yaml
-    refresh: 0s
+    refresh: 0d

@@ -37,10 +37,10 @@ jobs:
       - name: Read version from YAML file
         id: read_version
         run: |
-          project_version=$(grep 'project_version:' esphome/components/basis.yaml | awk '{print $2}' | tr -d '"')
+          project_version=$(grep 'project_version:' esphome/package/basis.yaml | awk '{print $2}' | tr -d '"')
           echo "project_version=$project_version" >> $GITHUB_ENV
 
-      - name: Build firmware
+      - name: Build firmware 🔨
         uses: esphome/build-action@v3.2.0
         id: esphome-build
         with:
@@ -62,7 +62,7 @@ jobs:
 
   consolidate:
     # if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    name: Consolidate firmwares 🚀
+    name: Consolidate firmwares 🔨 
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -83,7 +83,7 @@ jobs:
           path: output
   
   build-site:
-    name: Build Site
+    name: Build Site 🔨
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code

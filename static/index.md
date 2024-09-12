@@ -6,15 +6,15 @@ In dit project komt de code te staan voor mijn LuxMeter.
 
 You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
 
-## Version 2
-schmm
-## Version 3
-schmm
-## Version 4
-schmm
+## Luxmeter
 
-## Version 5
-schmm
+You can install your luxmeter firmare by pressing connect.
+
 <esp-web-install-button manifest="./myesphome-luxmeter-manifest.json"> Install Luxmeter</esp-web-install-button>
+
+After installation the device will popup in Home Assist > ESPhome
+
+
+
 
 <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>

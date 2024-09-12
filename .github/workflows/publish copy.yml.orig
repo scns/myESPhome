@@ -21,7 +21,7 @@ jobs:
         esphome/luxmeter.yaml
         esphome/luxmeter_1.yaml
         
-      esphome-version: 2024.7.3
+      esphome-version: 2024.8.3
       combined-name: firmware
       release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}
       release-url: ${{ github.event_name == 'release' && github.event.release.html_url || '' }}

@@ -22,7 +22,7 @@ jobs:
       matrix:
         firmware:
           - file: esphome/luxmeter.yaml
-            name: myesphome-luxmeter
+            name: "🔨 myesphome-luxmeter 🔨"
             manifest_filename: myesphome-luxmeter-manifest.json
         #  - file: esphome/luxmeter_1.yaml
         #    name: myesphome-luxmeter1
@@ -40,7 +40,7 @@ jobs:
           project_version=$(grep 'project_version:' esphome/package/basis.yaml | awk '{print $2}' | tr -d '"')
           echo "project_version=$project_version" >> $GITHUB_ENV
 
-      - name: Build firmware 🔨
+      - name: 🔨 Build firmware 🔨
         uses: esphome/build-action@v3.2.0
         id: esphome-build
         with:
@@ -48,7 +48,7 @@ jobs:
           version: 2024.7.3
           release_url: ${{ github.event.release.html_url || env.RELEASE_URL }}
 
-      - name: Copy firmware and manifest 🔨
+      - name: 🔨 Copy firmware and manifest 🔨
         run: |
           mkdir output
           mv ${{ steps.esphome-build.outputs.name }} output/
@@ -62,7 +62,7 @@ jobs:
 
   consolidate:
     # if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    name: Consolidate firmwares 🔨 
+    name: 🔨 Consolidate firmwares 🔨 
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -83,7 +83,7 @@ jobs:
           path: output
   
   build-site:
-    name: Build Site 🔨
+    name: 🔨 Build Site 🔨
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -101,7 +101,7 @@ jobs:
 
   deploy:
     #if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
-    name: Deploy to GitHub Pages 🚀
+    name: 🚀 Deploy to GitHub Pages 🚀
     runs-on: ubuntu-latest
     needs: 
           - consolidate

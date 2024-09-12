@@ -45,7 +45,7 @@ jobs:
         id: esphome-build
         with:
           yaml_file: ${{ matrix.firmware.file }}
-          version: 2024.7.3
+          version: 2024.8.3
           release_url: ${{ github.event.release.html_url || env.RELEASE_URL }}
 
       - name: 🔨 Copy firmware and manifest 🔨

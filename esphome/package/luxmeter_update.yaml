@@ -4,7 +4,7 @@ update:
     id: update_http_request
     source: https://scns.github.io/myESPhome/luxmeter-esp8266/myesphome-luxmeter-manifest.json
 
- ota:
+ota:
   - platform: esphome
     id: ota_esphome
   - platform: http_request

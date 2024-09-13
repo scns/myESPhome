@@ -4,16 +4,4 @@ update:
     id: update_http_request
     source: https://scns.github.io/myESPhome/luxmeter-esp8266/myesphome-luxmeter-manifest.json
 
-ota:
-  - platform: esphome
-    id: ota_esphome
-  - platform: http_request
-    id: ota_http_request
-    on_begin:
-      then:
-        - logger.log: "OTA Start"
-    on_progress: 
-      then:
-        - ota.http_request.flash:
-            #md5_url: http://example.com/firmware.md5
-            url: https://scns.github.io/myESPhome/luxmeter-esp8266/luxmeter-esp8266.ota.bin
+

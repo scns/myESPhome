@@ -1,5 +1,5 @@
 substitutions:
-  project_version: "2.0.11"
+  project_version: "2.0.12"
   device_description: "${device_name} build by Maarten Schmeitz (scns). Version ${project_version}. (https://github.com/scns)"
   date: "11-09-2024"
 
@@ -20,6 +20,12 @@ improv_serial:
 captive_portal:
 
 api:
+
+ota:
+  - platform: esphome
+    id: ota_esphome
+  - platform: http_request
+    id: ota_http_request
 
 http_request:
   verify_ssl: false

@@ -10,3 +10,10 @@
 ### Luxmeter
 
 een luxmeter Meer info volgt.
+
+
+[commits-shield]: https://img.shields.io/github/commit-activity/m/scns/myESPhome.svg
+[commits]: https://github.com/scns/myESPhome/commits/main
+[github-last-commit]: https://img.shields.io/github/last-commit/scns/myESPhome.svg?style=plasticr
+[github-master]: https://github.com/scns/myESPhome/commits/main
+[license-shield]: https://img.shields.io/github/license/scns/myESPhome.svg

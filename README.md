@@ -17,3 +17,11 @@ een luxmeter Meer info volgt.
 [github-last-commit]: https://img.shields.io/github/last-commit/scns/myESPhome.svg?style=plasticr
 [github-master]: https://github.com/scns/myESPhome/commits/main
 [license-shield]: https://img.shields.io/github/license/scns/myESPhome.svg
+[contributors-url]: https://github.com/scns/myESPhome/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/scns/myESPhome.svg
+[forks-shield]: https://img.shields.io/github/forks/scns/myESPhome.svg
+[forks-url]: https://github.com/scns/myESPhome/network/members
+[stars-shield]: https://img.shields.io/github/stars/scns/myESPhome.svg
+[stars-url]: https://github.com/scns/myESPhome/stargazers
+[issues-shield]: https://img.shields.io/github/issues/scns/myESPhome.svg
+[issues-url]: https://github.com/scns/myESPhome/issues

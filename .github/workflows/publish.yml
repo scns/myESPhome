@@ -61,7 +61,7 @@ jobs:
           path: output
 
   consolidate:
-    # if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    #if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     name: 🔨 Consolidate firmwares 🔨 
     runs-on: ubuntu-latest
     needs: build
@@ -100,7 +100,7 @@ jobs:
           path: output
 
   deploy:
-    #if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     name: 🚀 Deploy to GitHub Pages 🚀
     runs-on: ubuntu-latest
     needs: 

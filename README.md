@@ -39,6 +39,7 @@ Ik ben een actieve member van de Huijzebruin Discord groep. Mocht je vragen hebb
 
 [commits-shield]: https://img.shields.io/github/commit-activity/m/scns/myESPhome.svg
 [discord]: https://discord.gg/bN8rC7gEng
+[discord-shield]: https://img.shields.io/discord/723629686093119650.svg?logo=discord&color=7289da
 [commits]: https://github.com/scns/myESPhome/commits/main
 [github-last-commit]: https://img.shields.io/github/last-commit/scns/myESPhome.svg?style=plasticr
 [github-master]: https://github.com/scns/myESPhome/commits/main

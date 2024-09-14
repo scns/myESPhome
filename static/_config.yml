@@ -2,4 +2,4 @@
 title: myESPhome projects
 description: Powered by ESPHome and ESP Web Tools
 #theme: jekyll-theme-slate
-theme: bulma-clean-theme
+remote_theme: chrisrhymes/bulma-clean-theme

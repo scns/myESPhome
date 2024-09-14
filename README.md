@@ -9,9 +9,11 @@
 
 # myESPhome Projects
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 ## Intro
 
-Wat is myESPhome. 
+Wat is myESPhome.
 
 ### a list of all devices in this project
 
@@ -21,7 +23,16 @@ Wat is myESPhome.
 
 ### Luxmeter
 
-een luxmeter Meer info volgt.
+#### Partlist
+
+| Description | Link Aliexpress | Link Amazon |
+| :--- | :--- | :--- |
+| WMOS D1 | | |
+| BH1780 sensor | | |
+
+#### Pinout
+
+![pinout](./static/stuff/pinout.png)
 
 ## Support
 

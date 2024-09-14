@@ -4,14 +4,14 @@
 | [![License][license-shield]](LICENSE) [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] | [![Contributors][contributors-shield]][contributors-url] [![GitHub release](https://img.shields.io/github/release/scns/myESPhome.svg)](https://GitHub.com/scns/myESPhome/releases) |
 
 |  myESPhome |
-| :--- |f
+| :--- |
 |  ![myESPhomelogo](./static/stuff/logo.webp) |
-| Made for ESPHome program |
-| ![ESPHome](./static/stuff/made-for-esphome-black-on-white.png) |
 
 # myESPhome Projects
 
 ## Intro
+
+Wat is myESPhome. 
 
 ### a list of all devices in this project
 
@@ -33,9 +33,13 @@ Maak een "issue" aan. Ik zal zo snel mogelijk regageren
 
 ### Discord
 
-Ik ben een actieve member van de Huijzebruin Discord groep. Mocht je vragen hebben kun je altijd lid worden van dit kanaal en contact met me zoeken.
+Ik ben een actieve member van de Huizebruin Discord groep. Mocht je vragen hebben kun je altijd lid worden van dit kanaal en contact met me zoeken. (schmm)
 
 [![Discord][discord-shield]][discord]
+
+### E-mail
+
+Je kan me ook altijd een mailtje sturen. dit kan naar myesphome@[nogtebepalen].nl. Ik zal hier zo snel mogelijk op reageren. Ik zal altijd proberen te reageren binnen 2 werkdagen.
 
 [commits-shield]: https://img.shields.io/github/commit-activity/m/scns/myESPhome.svg
 [discord]: https://discord.gg/bN8rC7gEng

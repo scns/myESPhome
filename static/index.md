@@ -17,7 +17,7 @@ After installation the device will popup in Home Assist > ESPhome
 ## Ikea Vindriktning
 
 
-<esp-web-install-button manifest="./vindriktning/manifest.json"> Install Luxmeter</esp-web-install-button>
+<esp-web-install-button manifest="./vindriktning/manifest.json"> Install ikea vindriktning</esp-web-install-button>
 
 After installation the device will popup in Home Assist > ESPhome
 

@@ -2,6 +2,6 @@ update:
   - platform: http_request
     name: Firmware Update
     id: update_http_request
-    source: https://scns.github.io/myESPhome/vindriktning-esp8266/myesphome-vindriktning-manifest.json
+    source: https://scns.github.io/myESPhome/vindriktning/manifest.json
 
 

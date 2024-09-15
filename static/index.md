@@ -10,14 +10,14 @@ You can use the button below to install the pre-built firmware directly to your 
 
 You can install your luxmeter firmare by pressing connect.
 
-<esp-web-install-button manifest="./luxmeter-esp8266/myesphome-luxmeter-manifest.json"> Install Luxmeter</esp-web-install-button>
+<esp-web-install-button manifest="./luxmeter/manifest.json"> Install Luxmeter</esp-web-install-button>
 
 After installation the device will popup in Home Assist > ESPhome
 
 ## Ikea Vindriktning
 
 
-<esp-web-install-button manifest="./vindriktning-esp8266/myesphome-vindriktning-manifest.json"> Install Luxmeter</esp-web-install-button>
+<esp-web-install-button manifest="./vindriktning/manifest.json"> Install Luxmeter</esp-web-install-button>
 
 After installation the device will popup in Home Assist > ESPhome
 

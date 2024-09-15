@@ -1,0 +1,35 @@
+---
+# vindriktning 
+#
+# a simple ESPHome integration to make an vindriktning 
+# © Maarten Schmeitz
+#
+substitutions:
+  device_name: "vindriktning"
+  
+esphome:
+  name: '${device_name}'
+  name_add_mac_suffix: true
+  comment: '${device_description}'
+  project:
+    name: "scns.myESPHome_${device_name}"
+    version: "${project_version}"
+  min_version: 2024.6.0
+
+esp8266:
+  board:  d1_mini
+  restore_from_flash: true
+
+
+dashboard_import:
+  package_import_url: github://scns/myESPhome/esphome/vindriktning.yaml
+
+packages:
+  remote_package:
+    url: https://github.com/scns/myESPhome
+    ref: main
+    files:
+      - esphome/package/ikea_vindriktning_update.yaml
+      - esphome/package/ikea_vindriktning.yaml
+      - esphome/package/basis_settings.yaml
+    refresh: 0d

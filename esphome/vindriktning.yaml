@@ -29,7 +29,7 @@ packages:
     url: https://github.com/scns/myESPhome
     ref: main
     files:
-      - esphome/package/ikea_vindriktning_update.yaml
-      - esphome/package/ikea_vindriktning.yaml
+      - esphome/package/vindriktning_update.yaml
+      - esphome/package/vindriktning.yaml
       - esphome/package/basis_settings.yaml
     refresh: 0d

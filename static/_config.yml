@@ -1,6 +1,7 @@
 # CHANGEME: Set these variable to your liking
 title: myESPhome projects
 description: Powered by ESPHome and ESP Web Tools
-theme: jekyll-theme-slate
-#remote_theme: chrisrhymes/bulma-clean-theme@v1.0.0
-#JEKYLL_ENV=production bundle exec jekyll build
+#theme: jekyll-theme-slate
+remote_theme: pages-themes/slate@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one

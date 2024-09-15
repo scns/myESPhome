@@ -14,4 +14,11 @@ You can install your luxmeter firmare by pressing connect.
 
 After installation the device will popup in Home Assist > ESPhome
 
+## Ikea Vindriktning
+
+
+<esp-web-install-button manifest="./vindriktning-esp8266/myesphome-vindriktning-manifest.json"> Install Luxmeter</esp-web-install-button>
+
+After installation the device will popup in Home Assist > ESPhome
+
 <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>

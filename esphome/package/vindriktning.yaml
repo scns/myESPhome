@@ -1,0 +1,10 @@
+uart:
+  rx_pin: D2
+  baud_rate: 9600
+
+sensor:
+  - platform: pm1006
+    pm_2_5:
+      name: "air_quality_index_vindriktning_pm2_5"
+      device_class: "pm25"   
+      state_class: "measurement"

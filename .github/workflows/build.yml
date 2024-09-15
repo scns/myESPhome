@@ -59,9 +59,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: output
-          
+
   build-site:
-    name: 🔨 Build Site 🔨
+    name: 🛠️ Build Site 🛠️
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code

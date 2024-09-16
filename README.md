@@ -54,7 +54,7 @@ En natuurlijk ook in contact komen met meerdere HomeAssistant gebruikers!
 Je kan me ook altijd een mailtje sturen. dit kan naar myesphome@[nogtebepalen].nl. Ik zal hier zo snel mogelijk op reageren. Ik zal altijd proberen te reageren binnen 2 werkdagen.
 
 [commits-shield]: https://img.shields.io/github/commit-activity/y/scns/myESPhome.svg
-[discord]: https://discord.gg/bN8rC7gEng
+[discord]: https://discord.gg/hKPgwWNHwH
 [discord-shield]: https://img.shields.io/discord/723629686093119650.svg?logo=discord&color=7289da
 [commits]: https://github.com/scns/myESPhome/commits/main
 [github-last-commit]: https://img.shields.io/github/last-commit/scns/myESPhome.svg?style=plasticr

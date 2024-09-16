@@ -62,7 +62,9 @@ template: |
 
   $CHANGES
 
-  **Full Changelog**: https://github.com/scns/myESPhome/compare/$PREVIOUS_TAG...$LATEST_TAG
+  **Full Changelog**: https://github.com/scns/myESPhome/compare/$PREVIOUS_TAG...$RESOLVED_VERSION
+
+   _To receive a notification on new releases, click on **Watch** > **Custom** > **Releases** on the top._
 
   ## Contributors
 

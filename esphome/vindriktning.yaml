@@ -30,6 +30,7 @@ packages:
     ref: main
     files:
       - esphome/package/vindriktning_update.yaml
+      - esphome/package/basis_esp8266.yaml #specific esp8266 basis settings
       - esphome/package/vindriktning.yaml
       - esphome/package/basis_settings.yaml
     refresh: 0d

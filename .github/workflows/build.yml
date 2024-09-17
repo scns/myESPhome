@@ -17,6 +17,7 @@ jobs:
       files: |
         esphome/luxmeter.yaml
         esphome/vindriktning.yaml
+        esphome/bluetoothproxy.yaml
         
       esphome-version: 2024.7.3
       release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}

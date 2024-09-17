@@ -18,6 +18,7 @@ jobs:
         file:
           - esphome/luxmeter
           - esphome/vindriktning
+          - esphome/bluetoothproxy
         esphome-version:
           - stable
           - beta

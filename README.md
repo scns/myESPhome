@@ -18,6 +18,7 @@ Wat is myESPhome.
 ### a list of all devices in this project
 
 * Luxmeter (operational)
+* Bluetooth proxy (operational)
 * Garagedoor Opener (comming soon)
 * Ikea Air Quality Meter (comming soon)
 

@@ -8,11 +8,3 @@ esp32_ble_tracker:
 bluetooth_proxy:
   active: true
 
-button:
-  - platform: safe_mode
-    id: button_safe_mode
-    name: "Safe Mode Boot"
-
-  - platform: factory_reset
-    id: factory_reset_btn
-    name: "Factory reset"

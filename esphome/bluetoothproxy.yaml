@@ -38,6 +38,7 @@ packages:
     ref: main
     files:
       - esphome/package/bluetoothproxy_update.yaml
+      - esphome/package/basis_esp32.yaml
       - esphome/package/bluetoothproxy.yaml
       - esphome/package/basis_settings.yaml
     refresh: 0d

@@ -5,7 +5,7 @@
 # © Maarten Schmeitz
 #
 substitutions:
-  device_name: "bluetooth-proxy"
+  device_name: "bluetoothproxy"
   
 esphome:
   name: '${device_name}'

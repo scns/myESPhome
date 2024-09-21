@@ -19,6 +19,7 @@ jobs:
           - esphome/luxmeter
           - esphome/vindriktning
           - esphome/bluetoothproxy
+          - esphome/garagedoor
         esphome-version:
           - stable
           - beta

@@ -1,0 +1,120 @@
+switch:
+  - platform: template
+    name: "Virtual Lock"
+    id: virtual_lock
+    optimistic: true
+  - platform: gpio
+    pin: D5
+    name: "Door relay"
+    id: door_relay
+    internal: true
+    on_turn_on:
+    - delay: 250ms
+    - switch.turn_off: door_relay
+    
+binary_sensor:
+  - platform: template
+    name: "Garage Door Is Jammed"
+    id: is_jammed
+    device_class: problem
+  - platform: template
+    name: "Garage Door Is Open"
+    id: is_open
+    device_class: garage_door
+    
+  - platform: gpio
+    pin:
+      number: D3
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: "Garage Door Close Sensor"
+    id: close_endstop_binary_sensor
+    internal: true
+    on_press:
+       - cover.template.publish:
+           id: garage_door
+           state: CLOSED
+           current_operation: IDLE
+       - binary_sensor.template.publish:
+          id: is_jammed
+          state: OFF
+       - binary_sensor.template.publish:
+          id: is_open
+          state: OFF
+    on_release: 
+       - cover.template.publish:
+           id: garage_door
+           current_operation: OPENING    
+       - binary_sensor.template.publish:
+          id: is_open
+          state: ON
+       - delay: 25s
+       - if:
+           condition:
+             binary_sensor.is_off: open_endstop_binary_sensor
+           then: 
+              - binary_sensor.template.publish:
+                  id: is_jammed
+                  state: ON
+  - platform: gpio
+    pin:
+      number: D2
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: "Garage Door Open Sensor"
+    id: open_endstop_binary_sensor
+    internal: true
+    on_press:
+       - cover.template.publish:
+           id: garage_door
+           state: OPEN
+           current_operation: IDLE
+       - binary_sensor.template.publish:
+          id: is_jammed
+          state: OFF
+    on_release: 
+       - cover.template.publish:
+           id: garage_door
+           current_operation: CLOSING  
+       - delay: 25s
+       - if:
+           condition:
+             binary_sensor.is_off: close_endstop_binary_sensor
+           then: 
+              - binary_sensor.template.publish:
+                  id: is_jammed
+                  state: ON
+cover:
+  - platform: template
+    id: garage_door
+    name: "Garage Door"
+    device_class: garage
+    open_action:
+        - if:
+           condition:
+             - and:
+               - switch.is_off: virtual_lock
+               - binary_sensor.is_on: close_endstop_binary_sensor
+           then: 
+             - switch.turn_on: door_relay
+    close_action:
+      - if:
+           condition:
+             - and:
+               - switch.is_off: virtual_lock
+               - binary_sensor.is_on: open_endstop_binary_sensor
+           then: 
+             - switch.turn_on: door_relay
+    stop_action:
+      - if:
+           condition:
+             - and:
+               - switch.is_off: virtual_lock
+               - binary_sensor.is_off: close_endstop_binary_sensor
+               - binary_sensor.is_off: open_endstop_binary_sensor
+           then: 
+             - switch.turn_on: door_relay

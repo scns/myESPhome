@@ -5,29 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MyESPHOme</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
 
-    gtag('config', 'G-9HB5QGY82J');
-  </script>
   <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
   </head>
+  <style>
+body {
+background-color: #d8e0ea ;
+}
+table {
+  border: 1px solid black; /* Solid black border */
+}
+th, td {
+  border: 1px solid black; /* Solid black border */
+  padding: 0.5rem; /* Optional: Add padding for content */
+}
+
+  </style>
   <body>
+  <center><img src="stuff/logo.webp" alt="logo" width="200px"></center>
+  <center>
+  <div class="radios">
+    <table>
+      <tr>    <label>
+        <td><input type="radio" name="type" value="luxmeter" checked />
+        <b>Luxmeter</b></td>
+      </label></tr>
+      <tr>
+        <td><label>
+          <input type="radio" name="type" value="vindriktning" />
+          <b>IKEA Vindriktning</b></label></td>
+      </tr>
+      <tr>
+        <td><label>
+          <input type="radio" name="type" value="garagedoor" />
+          <b>Garagedoor</b></label></td>
+      </tr>
+      <tr>
+        <td><label>
+          <input type="radio" name="type" value="bluetoothproxy" />
+          <b>Bluetooth Proxy</b></label></td>
+      </tr>
+    </table>
+  </center>  
 
-<div class="radios">
-    <label>
-      <input type="radio" name="type" value="luxmeter" checked /><br>
-      <td><b>luxmeter</b></td><br>
-    </label>
-    <label>
-      <input type="radio" name="type" value="vindriktning" /><br>
-      <td><b>vindriktning</b></td><br>
-    </label>
-    
 
-  </div>
+
+  </div><br>
   <p class="button-row" align="center">
     <esp-web-install-button></esp-web-install-button>
   </p>
@@ -53,6 +76,10 @@
       document.body.classList.add("show-special");
     }
   </script>
-
+  
+<table width="100%">
+  <tr><td><center>(c) 2024 by Maarten Schmeitz</center></td></tr>
+  
+</table>
 </body>
 </html>

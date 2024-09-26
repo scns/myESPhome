@@ -30,81 +30,60 @@
         <div class="col-md-3">
           <div id="sidebar"></div>
         </div>
-        <img src="stuff/logo.webp" alt="logo" width="200px">
         <div class="col-md-9">
-          
-          
           <main id="main-content">
 
-              
-            
-          
-              <div class="radios">
-              <table>
-                <tr>   <td><label>
-                  <input type="radio" name="type" value="luxmeter" checked />
-                  <b>Luxmeter</b></td>
-                </label></tr>
-                <tr>
-                  <td><label>
-                    <input type="radio" name="type" value="vindriktning" />
-                    <b>IKEA Vindriktning</b></label></td>
-                </tr>
-                <tr>
-                  <td><label>
-                    <input type="radio" name="type" value="garagedoor" />
-                    <b>Garagedoor</b></label></td>
-                </tr>
-                <tr>
-                  <td><label>
-                    <input type="radio" name="type" value="bluetoothproxy" />
-                    <b>Bluetooth Proxy</b></label></td>
-                </tr>
-              </table>
-            
-            <br>
-            <p class="button-row" align="center">
-              <esp-web-install-button></esp-web-install-button>
-            </p>
-          </div>
+      <table>
+        <tbody>
+          <tr>
+            <td><img src="./stuff/logo.webp" class="img-fluid" alt="logo" width="150px"></td>
+          </tr>
+        </tbody>
+      </table>
 
-      </div><br>
+      <div class="radios">
+        <table>
+          <tr>   <td><label>
+            <input type="radio" name="type" value="luxmeter" checked />
+            <b>Luxmeter</b></td>
+          </label></tr>
+          <tr>
+            <td><label>
+              <input type="radio" name="type" value="vindriktning" />
+              <b>IKEA Vindriktning</b></label></td>
+          </tr>
+          <tr>
+            <td><label>
+              <input type="radio" name="type" value="garagedoor" />
+              <b>Garagedoor</b></label></td>
+          </tr>
+          <tr>
+            <td><label>
+              <input type="radio" name="type" value="bluetoothproxy" />
+              <b>Bluetooth Proxy</b></label></td>
+          </tr>
+        </table>
+      
+      <br>
+      <p class="button-row" align="center">
+        <esp-web-install-button></esp-web-install-button>
+      </p>
+    </div> 
 
-  </div></div>
-  <script>
-    document.querySelectorAll('input[name="type"]').forEach((radio) =>
-      radio.addEventListener("change", () => {
-        const button = document.querySelector("esp-web-install-button");
-        button.manifest = `./${radio.value}/manifest.json`;
-
-        document.querySelectorAll(".info").forEach((info) => {
-          info.classList.add("hidden");
-        });
-        document
-          .querySelector(`.info.${radio.value}`)
-          .classList.remove("hidden");
-      })
-    );
-    document
-      .querySelector('input[name="type"]:checked')
-      .dispatchEvent(new Event("change"));
-    if (new URLSearchParams(document.location.search).has("special")) {
-      document.body.classList.add("show-special");
-    }
-  </script>
-  
-<table width="100%">
-  <tr><td><center>(c) 2024 by Maarten Schmeitz</center></td></tr>
+      <br>
+      </main>
+      </div>
+      </div>
+      </div>
 
 
-</table>
+  <div id="footer"></div>
 
-<div id="footer"></div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="./scripts/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="./js/script.js"></script>
+</body>
 
 </body>
 </html>

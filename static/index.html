@@ -5,56 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MyESPHOme</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="./stuff/icon.ico">
+  <meta name="description" content="An place for ESPhomeProjcets" />
+  <meta name="keywords" content="home assistant, esphome">
+  <meta name="author" content="Maarten Schmeitz" />
+  <meta name="copyright" content="Maarten Schmeitz" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta property="og:title" content="https://scns.github.io/myESPhome" />
+  <meta property="og:site_name" content="https://scns.github.io/myESPhome" />
+  <meta property="og:url" content="https://scns.github.io/myESPhome" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="MyESPHome" />
   <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
   </head>
-  <style>
-body {
-background-color: #d8e0ea ;
-}
-table {
-  border: 1px solid black; /* Solid black border */
-}
-th, td {
-  border: 1px solid black; /* Solid black border */
-  padding: 0.5rem; /* Optional: Add padding for content */
-}
-
-  </style>
   <body>
-  <center><img src="stuff/logo.webp" alt="logo" width="200px"></center>
-  <center>
-  <div class="radios">
-    <table>
-      <tr>    <label>
-        <td><input type="radio" name="type" value="luxmeter" checked />
-        <b>Luxmeter</b></td>
-      </label></tr>
-      <tr>
-        <td><label>
-          <input type="radio" name="type" value="vindriktning" />
-          <b>IKEA Vindriktning</b></label></td>
-      </tr>
-      <tr>
-        <td><label>
-          <input type="radio" name="type" value="garagedoor" />
-          <b>Garagedoor</b></label></td>
-      </tr>
-      <tr>
-        <td><label>
-          <input type="radio" name="type" value="bluetoothproxy" />
-          <b>Bluetooth Proxy</b></label></td>
-      </tr>
-    </table>
-  </center>  
+    <div id="navbar"></div>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-3">
+          <div id="sidebar"></div>
+        </div>
+        <img src="stuff/logo.webp" alt="logo" width="200px">
+        <div class="col-md-9">
+          
+          
+          <main id="main-content">
 
+              
+            
+          
+              <div class="radios">
+              <table>
+                <tr>   <td><label>
+                  <input type="radio" name="type" value="luxmeter" checked />
+                  <b>Luxmeter</b></td>
+                </label></tr>
+                <tr>
+                  <td><label>
+                    <input type="radio" name="type" value="vindriktning" />
+                    <b>IKEA Vindriktning</b></label></td>
+                </tr>
+                <tr>
+                  <td><label>
+                    <input type="radio" name="type" value="garagedoor" />
+                    <b>Garagedoor</b></label></td>
+                </tr>
+                <tr>
+                  <td><label>
+                    <input type="radio" name="type" value="bluetoothproxy" />
+                    <b>Bluetooth Proxy</b></label></td>
+                </tr>
+              </table>
+            
+            <br>
+            <p class="button-row" align="center">
+              <esp-web-install-button></esp-web-install-button>
+            </p>
+          </div>
 
+      </div><br>
 
-  </div><br>
-  <p class="button-row" align="center">
-    <esp-web-install-button></esp-web-install-button>
-  </p>
-
+  </div></div>
   <script>
     document.querySelectorAll('input[name="type"]').forEach((radio) =>
       radio.addEventListener("change", () => {
@@ -79,7 +94,16 @@ th, td {
   
 <table width="100%">
   <tr><td><center>(c) 2024 by Maarten Schmeitz</center></td></tr>
-  
+
+
 </table>
+
+<div id="footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="./scripts/script.js"></script>
+
 </body>
 </html>

@@ -2,10 +2,10 @@ body {
     background-color: #D5DBE0 ;
     }
 table {
-      border: 0px solid black; /* Solid black border */
+     /* border: 0px solid black; /* Solid black border */
     }
 th, td {
-      border: 0px solid black; /* Solid black border */
+    /*  border: 0px solid black; /* Solid black border */
       padding: 0.5rem; /* Optional: Add padding for content */
     }
 

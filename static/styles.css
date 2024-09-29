@@ -76,3 +76,7 @@ body.show-special .special {
 .hidden {
     display: none;
 }
+
+aside.bg-dark {
+    margin-bottom: 2rem; /* Adjust the value as needed */
+}

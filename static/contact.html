@@ -24,11 +24,11 @@
 </head>
 
 <body class="bg-dark text-white">
-  <div id="navbar"></div>
+    <nav id="navbar" aria-label="Main navigation"></nav>
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-3">
-        <div id="sidebar"></div>
+        <aside id="sidebar" aria-label="Sidebar"></aside>
       </div>
       <div class="col-md-9">
         <main id="main-content">
@@ -36,7 +36,11 @@
             <div class="container text-center my-5">
                 <h1>Contact</h1>
                 <p class="lead">For more information, feel free to reach out to us at:</p>
-                <p><strong>Email:</strong> info[AT]scns[dot]nl
+                <p><strong>Email:</strong> <span id="obfuscated-email">info[AT]scns[dot]nl</span></p>
+                <script>
+                    document.getElementById('obfuscated-email').innerHTML = 
+                        atob('aW5mb0BzY25zLm5s'); // Base64 encoded email
+                </script>
             </div>
 
           
@@ -45,7 +49,7 @@
     </div>
   </div>
 
-  <div id="footer"></div>
+  <footer id="footer" aria-label="Page footer"></footer>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

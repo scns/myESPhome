@@ -2,7 +2,7 @@
 
 ## LAMP
 
-a lightweigt Webserver
+a lightweight Webserver
 
 ## HomeAssistant
 

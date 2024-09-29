@@ -1,0 +1,25 @@
+version: '3.8'    #check if there is a new docker compose version
+services:
+  web:
+    image: php:8.2-apache    #check the php version you need for your project
+    ports:
+      - "80:80"    #this line maps your pc port to the container port
+    depends_on:
+      - db    #this line links this container to the db container
+    volumes:
+      - c:\git\myesphome\static\:/var/www/html    #this line maps the content of ./html in your pc to the /var/www/html of the container
+  db:
+    image: mysql:8.1.0    #check the mysql version you need for your project
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password    #you can change the mysql root password here
+      MYSQL_DATABASE: lamp_db    #you can change the database name here
+    volumes:
+      - ./mysql_data:/var/lib/mysql    #this line maps the content of ./mysql_data in your pc to the /var/lib/mysql of the container
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"    #this line maps your pc port to the container port
+    depends_on:
+      - db    #this line links this container to the db container
+    environment:
+      PMA_HOST: db

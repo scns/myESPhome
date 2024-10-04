@@ -2,10 +2,6 @@ name: "Documentation"
 description: "Create an issue to improve the documentation of the myESPhome Project"
 labels: ["documentation", "triage:not-checked"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Create a new issue regarding the myESPhome documentation
   - type: dropdown
     id: issue-type
     attributes:

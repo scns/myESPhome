@@ -21,8 +21,8 @@ body:
   - type: input
     id: location
     attributes:
-    label: Location of the issue
-    description: Please provide the URL or path to the specific documentation page or section
+      label: Location of the issue
+      description: Please provide the URL or path to the specific documentation page or section
     validations:
       required: true
   - type: textarea
@@ -30,5 +30,5 @@ body:
     attributes:
       label: Proposed change or improvement
       description: Please describe your suggested improvement or provide the corrected content
-      validations:
-        required: true
+    validations:
+      required: true

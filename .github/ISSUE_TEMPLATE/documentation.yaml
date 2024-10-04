@@ -7,17 +7,17 @@ body:
       value: |
         Create a new issue regarding the myESPhome documentation
   - type: dropdown
-  id: issue-type
-  attributes:
-    label: Type of documentation issue
-    options:
-      - Missing information
-      - Unclear explanation
-      - Outdated content
-      - Formatting/structure improvement
-      - Other (please specify in the description)
-  validations:
-    required: true
+    id: issue-type
+    attributes:
+      label: Type of documentation issue
+      options:
+        - Missing information
+        - Unclear explanation
+        - Outdated content
+        - Formatting/structure improvement
+        - Other (please specify in the description)
+    validations:
+      required: true
   - type: input
   id: location
   attributes:

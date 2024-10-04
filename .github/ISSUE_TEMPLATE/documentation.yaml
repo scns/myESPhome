@@ -2,6 +2,10 @@ name: "Documentation"
 description: "Create an issue to improve the documentation of the myESPhome Project"
 labels: ["documentation", "triage:not-checked"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Create a new issue regarding the myESPhome documentation
   - type: dropdown
     id: issue-type
     attributes:
@@ -15,8 +19,8 @@ body:
     validations:
       required: true
   - type: input
-  id: location
-  attributes:
+    id: location
+    attributes:
     label: Location of the issue
     description: Please provide the URL or path to the specific documentation page or section
   validations:

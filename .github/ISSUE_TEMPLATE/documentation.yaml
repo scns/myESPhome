@@ -23,12 +23,12 @@ body:
     attributes:
     label: Location of the issue
     description: Please provide the URL or path to the specific documentation page or section
-  validations:
-    required: true
+    validations:
+      required: true
   - type: textarea
     id: proposed-change
     attributes:
       label: Proposed change or improvement
       description: Please describe your suggested improvement or provide the corrected content
-    validations:
-      required: true
+      validations:
+        required: true

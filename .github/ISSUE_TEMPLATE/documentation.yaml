@@ -1,11 +1,11 @@
 name: "Documentation"
-description: "Create an issue to improve the documentation"
+description: "Create an issue to improve the documentation of the myESPhome Project"
 labels: ["documentation", "triage:not-checked"]
 body:
   - type: markdown
     attributes:
       value: |
-        Create a new issue regarding the S0tool documentation
+        Create a new issue regarding the myESPhome documentation
   - type: textarea
     id: repro
     attributes:

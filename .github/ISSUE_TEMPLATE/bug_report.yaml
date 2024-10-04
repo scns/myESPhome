@@ -1,5 +1,5 @@
 name: "Bug report"
-description: "Create a bug report to help us improve the S0tool!"
+description: "Create a bug report to help us improve the myESPhome Project!"
 labels: ["bug", "question", "triage:not-checked"]
 body:
   - type: checkboxes

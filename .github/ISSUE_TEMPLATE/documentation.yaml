@@ -6,10 +6,29 @@ body:
     attributes:
       value: |
         Create a new issue regarding the myESPhome documentation
+  - type: dropdown
+  id: issue-type
+  attributes:
+    label: Type of documentation issue
+    options:
+      - Missing information
+      - Unclear explanation
+      - Outdated content
+      - Formatting/structure improvement
+      - Other (please specify in the description)
+  validations:
+    required: true
+  - type: input
+  id: location
+  attributes:
+    label: Location of the issue
+    description: Please provide the URL or path to the specific documentation page or section
+  validations:
+    required: true
   - type: textarea
-    id: repro
+    id: proposed-change
     attributes:
-      label: Body of the issue
-      description: Please provide one distinct thing to fix or a clearly defined enhancement
+      label: Proposed change or improvement
+      description: Please describe your suggested improvement or provide the corrected content
     validations:
       required: true

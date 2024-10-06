@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles.css">
   <link rel="icon" type="image/x-icon" href="./stuff/icon.ico">
-  <meta name="description" content="A place for ESPhome Projcets" />
+  <meta name="description" content="A place for ESPHome Projects" />
   <meta name="keywords" content="home assistant, esphome">
   <meta name="author" content="Maarten Schmeitz" />
   <meta name="copyright" content="Maarten Schmeitz" />
@@ -19,35 +20,69 @@
   <meta property="og:description" content="MyESPHome" />
   <meta property="og:image" content="./stuff/logo.webp" />
   <meta property="og:image:alt" content="MyESPHome logo" />
-  <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
- 
-  </head>
-  <body>
-    <div id="navbar"></div>
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-3">
-          <div id="sidebar"></div>
-        </div>
-        <div class="col-md-9">
-          <main id="main-content">
-            Hier komen links naar de artikelen // onderdelen te staan
-    </div> 
+  <script src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module" integrity="sha384-gugQ6PELTRVfKNYWF/V9cA0EVPc55HFXvLDPTe9CeYAG8YoOBJyICok9wy73ynru" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PGXPS6Q7Y0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-      <br>
+    gtag('config', 'G-PGXPS6Q7Y0');
+  </script>
+  <!-- End Google tag (gtag.js) -->
+</head>
+
+<body class="bg-dark text-white font-sans">
+  <!-- Navbar will be populated by JavaScript -->
+  <div id="navbar"></div>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-3">
+        <!-- Sidebar will be populated by JavaScript -->
+        <div id="sidebar"></div>
+      </div>
+      <div class="col-md-9">
+        <main id="main-content">
+          <h2>List of links to products</h2>
+          <table class="table table-dark table-striped">
+              <thead>
+                  <tr>
+                      <th>Image</th>
+                      <th>Description</th>
+                      <th>Link</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr><td colspan="3">Luxsensor</td></tr>
+                  <tr>
+                      <td><img src="./stuff/esp8266.webp" alt="esp8266" width="100px"></td>
+                      <td>Wemos D1 mini ep8266.</td>
+                      <td><a href="https://s.click.aliexpress.com/e/_DdraV0l" class="text-white">Bestellen bij Aliexpress</a></td>
+                  </tr>
+                  <tr>
+                      <td><img src="./stuff/bh1750.webp" alt="BH1750" width="100px"></td>
+                      <td>BH1750 BH1750FVI Chip Light Intensity Light Module</td>
+                      <td><a href="https://s.click.aliexpress.com/e/_DmVE9ev" class="text-white">Bestelen bij Aliexpress</a></td>
+                  </tr>
+                  <tr>
+                      <td><img src="3d/lightsensor.jpeg" alt="Lightsensor casing" width="100px" height="100px"></td>
+                      <td>3d files for casing</td>
+                      <td><a href="./3d/lightsensor.zip" class="lightseonsr">Download</a></td>
+                  </tr>
+              </tbody>
+          </table>
       </main>
       </div>
-      </div>
-      </div>
-
-
+    </div>
+  </div>
+  <!-- footer will be populated by JavaScript -->
   <div id="footer"></div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   <script src="./scripts/script.js"></script>
-
-
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 update:
   - platform: http_request
-    name: Firmware Update
+    name: Software Update
     id: update_http_request
     source: https://myesphome.assistantathome.nl/bluetoothproxy/manifest.json
 

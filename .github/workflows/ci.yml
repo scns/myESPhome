@@ -20,6 +20,7 @@ jobs:
           - esphome/vindriktning
           - esphome/bluetoothproxy
           - esphome/garagedoor
+          - esphome/ds18b20
         esphome-version:
           - stable
           - beta

@@ -22,7 +22,7 @@ jobs:
           - esphome/garagedoor
           - esphome/ds18b20
         esphome-version:
-          - stable
+          - latest
           - beta
           - dev
     steps:
@@ -33,8 +33,8 @@ jobs:
         with:
           yaml-file: ${{ matrix.file }}.yaml
           version: ${{ matrix.esphome-version }}
-      - name: ESPHome ${{ matrix.esphome-version }} Factory
-        uses: esphome/build-action@v4.0.3
-        with:
-          yaml-file: ${{ matrix.file }}.yaml
-          version: ${{ matrix.esphome-version }}
+#      - name: ESPHome ${{ matrix.esphome-version }} Factory
+#        uses: esphome/build-action@v4.0.3
+#        with:
+#          yaml-file: ${{ matrix.file }}.yaml
+#          version: ${{ matrix.esphome-version }}

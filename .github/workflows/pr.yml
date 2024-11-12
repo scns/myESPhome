@@ -26,9 +26,9 @@ jobs:
     with:
       yaml-file: esphome/vindriktning.yaml
         
-        esphome-version: 2024.10.0
-        release-url: "https://github.com/scns/myESPhome/releases"
-        release-summary: "** Check the release notes for more information. **"
+      esphome-version: 2024.10.0
+      release-url: "https://github.com/scns/myESPhome/releases"
+      release-summary: "** Check the release notes for more information. **"
 
   build-bluetoothproxy:
     name: Build firmware bluetoothproxy 🛠️
@@ -36,9 +36,9 @@ jobs:
     with:
       yaml-file: esphome/bluetoothproxy.yaml
         
-        esphome-version: 2024.10.0
-        release-url: "https://github.com/scns/myESPhome/releases"
-        release-summary: "** Check the release notes for more information. **"
+      esphome-version: 2024.10.0
+      release-url: "https://github.com/scns/myESPhome/releases"
+      release-summary: "** Check the release notes for more information. **"
 
 
       #esphome/garagedoor.yaml

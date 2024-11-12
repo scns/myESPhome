@@ -109,7 +109,7 @@ jobs:
 
             [Download][download] and extract the firmware to install with https://web.esphome.io
 
-            Make sure to choose \`home-assistant-voice-esp32s3.factory.bin\`.
+            Make sure to choose \`[name of the firmware].factory.bin\`.
 
             [download]: ${url}`
             })

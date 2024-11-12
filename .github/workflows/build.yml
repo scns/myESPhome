@@ -20,6 +20,7 @@ jobs:
         esphome/bluetoothproxy.yaml
         esphome/garagedoor.yaml
         esphome/ds18b20.yaml
+        esphome/ds18b20_beta.yaml
         
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
@@ -82,3 +83,33 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
+              
+  comment:
+    if: github.event_name == 'pull_request'
+    name: Comment on PR
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Comment on PR
+        uses: actions/github-script@v7.0.1
+        with:
+          script: |-
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            })
+            const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts/${artifacts['data']['artifacts'][0]['id']}`
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Firmware built successfully! :tada:
+
+            [Download][download] and extract the firmware to install with https://web.esphome.io
+
+            Make sure to choose \`home-assistant-voice-esp32s3.factory.bin\`.
+
+            [download]: ${url}`
+            })

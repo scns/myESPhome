@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-  #pull_request:
+  pull_request:
   workflow_dispatch:
-  release:
-    types: [published]
+ # release:
+   # types: [published]
 
 jobs:
   build-luxmeter:

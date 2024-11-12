@@ -1,7 +1,7 @@
 ---
-# vindriktning 
+# DS18B20 Temperature Sensor
 #
-# a simple ESPHome integration to make an vindriktning 
+# A simple ESPHome integration for DS18B20 temperature sensor
 # © Maarten Schmeitz
 #
 substitutions:

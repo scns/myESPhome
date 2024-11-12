@@ -11,10 +11,10 @@ services:
       #this line maps the content of ./html
       #in your pc to the /var/www/html of the container
   db:
-    image: mysql:9.1.0    
+    image: mysql:9.1.0
     #check the mysql version you need for your project
     environment:
-      MYSQL_ROOT_PASSWORD: root_password    
+      MYSQL_ROOT_PASSWORD: root_password
       #you can change the mysql root password here
       MYSQL_DATABASE: lamp_db    #you can change the database name here
     volumes:
@@ -30,4 +30,3 @@ services:
       - db    #this line links this container to the db container
     environment:
       PMA_HOST: db
-      

@@ -1,4 +1,4 @@
-name: Build
+name: Comment_firmware_download
 # Build the ESPHome firmwares for the MyESPhome project.
 on:
   push:
@@ -14,7 +14,8 @@ jobs:
     name: Build firmware Luxmeter 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
-      yaml-file: esphome/luxmeter.yaml
+      files: |
+        esphome/luxmeter.yaml
         
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
@@ -24,7 +25,8 @@ jobs:
     name: Build firmware vindriktning 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
-      yaml-file: esphome/vindriktning.yaml
+      files: |
+        esphome/vindriktning.yaml
         
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
@@ -34,14 +36,24 @@ jobs:
     name: Build firmware bluetoothproxy 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
-      yaml-file: esphome/bluetoothproxy.yaml
+      files: |
+        esphome/bluetoothproxy.yaml
         
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
 
+  build-garagedoor:
+    name: Build firmware Garagedoor 🛠️
+    uses: esphome/workflows/.github/workflows/build.yml@main
+    with:
+      files: |
+        esphome/garagedoor.yaml
+    
+      esphome-version: 2024.10.0
+      release-url: "https://github.com/scns/myESPhome/releases"
+      release-summary: "** Check the release notes for more information. **"    
 
-      #esphome/garagedoor.yaml
       #esphome/ds18b20.yaml
       #esphome/ds18b20_beta.yaml
 
@@ -112,6 +124,36 @@ jobs:
     runs-on: ubuntu-latest
     needs:
         - build-bluetoothproxy
+    steps:
+        - name: Comment on PR
+          uses: actions/github-script@v7.0.1
+          with:
+                script: |-
+                    const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        run_id: context.runId,
+                    })
+                    const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts/${artifacts['data']['artifacts'][0]['id']}`
+                    await github.rest.issues.createComment({
+                        issue_number: context.issue.number,
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        body: `Firmware built successfully! :tada:
+
+                    [Download][download] and extract the firmware to install with https://web.esphome.io
+
+                    Make sure to choose \`bluetoothproxy-esp32.factory.bin\`.
+
+                    [download]: ${url}`
+                    })
+
+  comment-garagedoor:
+    if: github.event_name == 'pull_request'
+    name: Comment on PR
+    runs-on: ubuntu-latest
+    needs:
+        - build-garagedoor
     steps:
         - name: Comment on PR
           uses: actions/github-script@v7.0.1

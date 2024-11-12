@@ -55,7 +55,7 @@ jobs:
       release-summary: "** Check the release notes for more information. **"    
 
   build-ds18b20:
-    name: Build firmware Garagedoor 🛠️
+    name: Build firmware ds18b20 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
       files: |
@@ -66,7 +66,7 @@ jobs:
       release-summary: "** Check the release notes for more information. **"        
   
   build-ds18b20_beta:
-    name: Build firmware Garagedoor 🛠️
+    name: Build firmware ds18b20_beta 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
         files: |

@@ -1,5 +1,5 @@
 name: Comment_firmware_download
-# Build the ESPHome firmwares for the MyESPhome project.
+# Build the ESPHome firmwares for the MyESPhome project and create links in the pullrequest for a manual download
 on:
   push:
     branches:
@@ -54,8 +54,28 @@ jobs:
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"    
 
-      #esphome/ds18b20.yaml
-      #esphome/ds18b20_beta.yaml
+  build-ds18b20:
+    name: Build firmware Garagedoor 🛠️
+    uses: esphome/workflows/.github/workflows/build.yml@main
+    with:
+      files: |
+       esphome/ds18b20.yaml
+
+      esphome-version: 2024.10.0
+      release-url: "https://github.com/scns/myESPhome/releases"
+      release-summary: "** Check the release notes for more information. **"        
+  
+  build-ds18b20_beta:
+    name: Build firmware Garagedoor 🛠️
+    uses: esphome/workflows/.github/workflows/build.yml@main
+    with:
+        files: |
+          esphome/ds18b20_beta.yaml
+
+        esphome-version: 2024.10.0
+        release-url: "https://github.com/scns/myESPhome/releases"
+        release-summary: "** Check the release notes for more information. **"          
+ 
 
               
   comment-luxmeter:
@@ -173,7 +193,67 @@ jobs:
 
                     [Download][download] and extract the firmware to install with https://web.esphome.io
 
-                    Make sure to choose \`bluetoothproxy-esp32.factory.bin\`.
+                    Make sure to choose \`garagedoor-esp8266.factory.bin\`.
 
                     [download]: ${url}`
                     })
+
+  comment-ds18b20:
+        if: github.event_name == 'pull_request'
+        name: Comment on PR
+        runs-on: ubuntu-latest
+        needs:
+            - build-ds18b20
+        steps:
+            - name: Comment on PR
+              uses: actions/github-script@v7.0.1
+              with:
+                    script: |-
+                        const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                            owner: context.repo.owner,
+                            repo: context.repo.repo,
+                            run_id: context.runId,
+                        })
+                        const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts/${artifacts['data']['artifacts'][0]['id']}`
+                        await github.rest.issues.createComment({
+                            issue_number: context.issue.number,
+                            owner: context.repo.owner,
+                            repo: context.repo.repo,
+                            body: `Firmware built successfully! :tada:
+    
+                        [Download][download] and extract the firmware to install with https://web.esphome.io
+    
+                        Make sure to choose \`ds18b20.factory.bin\`.
+    
+                        [download]: ${url}`
+                        })
+             
+  comment-ds18b20_beta:
+        if: github.event_name == 'pull_request'
+        name: Comment on PR
+        runs-on: ubuntu-latest
+        needs:
+            - build-ds18b20_beta
+        steps:
+            - name: Comment on PR
+              uses: actions/github-script@v7.0.1
+              with:
+                    script: |-
+                        const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                            owner: context.repo.owner,
+                            repo: context.repo.repo,
+                            run_id: context.runId,
+                        })
+                        const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts/${artifacts['data']['artifacts'][0]['id']}`
+                        await github.rest.issues.createComment({
+                            issue_number: context.issue.number,
+                            owner: context.repo.owner,
+                            repo: context.repo.repo,
+                            body: `Firmware built successfully! :tada:
+    
+                        [Download][download] and extract the firmware to install with https://web.esphome.io
+    
+                        Make sure to choose \`ds18b20_beta.factory.bin\`.
+    
+                        [download]: ${url}`
+                        })                        

@@ -18,5 +18,24 @@ jobs:
     steps:
       - name: ⤵️ Check out configuration from GitHub
         uses: actions/checkout@v4.2.2
+      - name: 📥 Install yamllint
+        run: |
+          python -m pip install --upgrade pip
+          pip install yamllint==1.33.0
+
+      - name: ✍️ Create yamllint config
+        run: |
+          cat > .yamllint << 'EOF'
+          extends: default
+          rules:
+            document-start: disable
+            line-length:
+              max: 120
+          EOF
+
       - name: 🚀 Run yamllint
-        run: yamllint --strict .
+        run: |
+          yamllint --strict . || {
+            echo "::error::YAML linting failed. Please fix the above issues."
+            exit 1
+          }

@@ -8,7 +8,6 @@ services:
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     privileged: true
-    #network_mode: host
+    # network_mode: host
     ports:
       - "8123:8123"
-      

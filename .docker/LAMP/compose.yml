@@ -16,7 +16,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       # you can change the mysql root password here
-      MYSQL_DATABASE: lamp_db    #you can change the database name here
+      MYSQL_DATABASE: lamp_db    # you can change the database name here
     volumes:
       - ./mysql_data:/var/lib/mysql
       # this line maps the content of ./mysql_data

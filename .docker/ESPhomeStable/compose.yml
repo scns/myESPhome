@@ -12,4 +12,3 @@ services:
     environment:
       - USERNAME=${ESPHOME_USERNAME}
       - PASSWORD=${ESPHOME_PASSWORD}
-      

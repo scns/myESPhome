@@ -6,7 +6,7 @@
 #
 substitutions:
   device_name: "luxmeter"
-  
+
 esphome:
   name: '${device_name}'
   name_add_mac_suffix: true
@@ -17,9 +17,8 @@ esphome:
   min_version: 2024.6.0
 
 esp8266:
-  board:  d1_mini
+  board: d1_mini
   restore_from_flash: true
-
 
 dashboard_import:
   package_import_url: github://scns/myESPhome/esphome/luxmeter.yaml
@@ -30,7 +29,7 @@ packages:
     ref: main
     files:
       - esphome/package/luxmeter_update.yaml
-      - esphome/package/basis_esp8266.yaml #specific esp8266 basis settings
+      - esphome/package/basis_esp8266.yaml     # specific esp8266 basis settings
       - esphome/package/luxmeter.yaml
       - esphome/package/basis_settings.yaml
     refresh: 0d

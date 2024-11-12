@@ -3,5 +3,3 @@ update:
     name: MyESPhome Software Update
     id: update_http_request
     source: https://myesphome.assistantathome.nl/ds18b20_beta/manifest.json
-
-

@@ -6,7 +6,7 @@
 #
 substitutions:
   device_name: "bluetoothproxy"
-  
+
 esphome:
   name: '${device_name}'
   name_add_mac_suffix: true
@@ -38,7 +38,7 @@ packages:
     ref: main
     files:
       - esphome/package/bluetoothproxy_update.yaml
-      - esphome/package/basis_esp32.yaml  #specific esp32 basis settings
+      - esphome/package/basis_esp32.yaml     # specific esp32 basis settings
       - esphome/package/bluetoothproxy.yaml
       - esphome/package/basis_settings.yaml
     refresh: 0d

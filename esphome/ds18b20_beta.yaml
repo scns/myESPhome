@@ -6,7 +6,7 @@
 #
 substitutions:
   device_name: "ds18b20_beta"
-  
+
 esphome:
   name: '${device_name}'
   name_add_mac_suffix: true
@@ -17,9 +17,8 @@ esphome:
   min_version: 2024.6.0
 
 esp8266:
-  board:  d1_mini
+  board: d1_mini
   restore_from_flash: true
-
 
 dashboard_import:
   package_import_url: github://scns/myESPhome/esphome/ds18b20_beta.yaml
@@ -30,7 +29,7 @@ packages:
     ref: main
     files:
       - esphome/package/ds18b20_update_beta.yaml
-      - esphome/package/basis_esp8266_beta.yaml #specific esp8266 basis settings
+      - esphome/package/basis_esp8266_beta.yaml    # specific esp8266 basis settings
       - esphome/package/ds18b20_beta.yaml
       - esphome/package/basis_settings_beta.yaml
     refresh: 0d

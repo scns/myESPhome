@@ -1,12 +1,12 @@
 ---
-# vindriktning 
+# vindriktning
 #
-# a simple ESPHome integration to make an garagedoor opener 
+# a simple ESPHome integration to make an garagedoor opener
 # © Maarten Schmeitz
 #
 substitutions:
   device_name: "garagedoor"
-  
+
 esphome:
   name: '${device_name}'
   name_add_mac_suffix: true
@@ -17,7 +17,7 @@ esphome:
   min_version: 2024.6.0
 
 esp8266:
-  board:  d1_mini
+  board: d1_mini
   restore_from_flash: true
 
 
@@ -30,7 +30,7 @@ packages:
     ref: main
     files:
       - esphome/package/garagedoor_update.yaml
-      - esphome/package/basis_esp8266.yaml #specific esp8266 basis settings
+      - esphome/package/basis_esp8266.yaml     # specific esp8266 basis settings
       - esphome/package/garagedoor.yaml
       - esphome/package/basis_settings.yaml
     refresh: 0d

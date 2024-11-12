@@ -14,30 +14,27 @@ jobs:
     name: Build firmware Luxmeter 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
-      files: |
-        esphome/luxmeter.yaml
+      yaml-file: esphome/luxmeter.yaml
         
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
 
   build-vindriktning:
-    name: Build firmware Luxmeter 🛠️
+    name: Build firmware vindriktning 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
-      files: |
-        esphome/vindriktning.yaml
+      yaml-file: esphome/vindriktning.yaml
         
         esphome-version: 2024.10.0
         release-url: "https://github.com/scns/myESPhome/releases"
         release-summary: "** Check the release notes for more information. **"
 
   build-bluetoothproxy:
-    name: Build firmware Luxmeter 🛠️
+    name: Build firmware bluetoothproxy 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
-      files: |
-        esphome/vindriktning.yaml
+      yaml-file: esphome/bluetoothproxy.yaml
         
         esphome-version: 2024.10.0
         release-url: "https://github.com/scns/myESPhome/releases"

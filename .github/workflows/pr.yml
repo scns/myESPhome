@@ -1,13 +1,11 @@
 name: Comment_firmware_download
 # Build the ESPHome firmwares for the MyESPhome project and create links in the pullrequest for a manual download
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - main
   pull_request:
   workflow_dispatch:
- # release:
-   # types: [published]
 
 jobs:
   build-luxmeter:
@@ -16,7 +14,7 @@ jobs:
     with:
       files: |
         esphome/luxmeter.yaml
-        
+  
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
@@ -27,7 +25,7 @@ jobs:
     with:
       files: |
         esphome/vindriktning.yaml
-        
+
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
@@ -38,7 +36,7 @@ jobs:
     with:
       files: |
         esphome/bluetoothproxy.yaml
-        
+
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
@@ -49,7 +47,7 @@ jobs:
     with:
       files: |
         esphome/garagedoor.yaml
-    
+
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"    
@@ -64,7 +62,7 @@ jobs:
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"        
-  
+
   build-ds18b20_beta:
     name: Build firmware ds18b20_beta 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
@@ -75,9 +73,7 @@ jobs:
         esphome-version: 2024.10.0
         release-url: "https://github.com/scns/myESPhome/releases"
         release-summary: "** Check the release notes for more information. **"          
- 
 
-              
   comment-luxmeter:
     if: github.event_name == 'pull_request'
     name: Comment on PR
@@ -227,7 +223,7 @@ jobs:
     
                         [download]: ${url}`
                         })
-             
+
   comment-ds18b20_beta:
         if: github.event_name == 'pull_request'
         name: Comment on PR
@@ -256,4 +252,4 @@ jobs:
                         Make sure to choose \`ds18b20_beta.factory.bin\`.
     
                         [download]: ${url}`
-                        })                        
+                        })

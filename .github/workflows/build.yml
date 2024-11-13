@@ -1,10 +1,10 @@
 name: Build
 # Build the ESPHome firmwares for the MyESPhome project.
-on:
+on:   # yamllint disable-line rule:truthy
   push:
     branches:
       - main
-  #pull_request:
+  # pull_request:
   workflow_dispatch:
   release:
     types: [published]
@@ -21,7 +21,7 @@ jobs:
         esphome/garagedoor.yaml
         esphome/ds18b20.yaml
         esphome/ds18b20_beta.yaml
-        
+      
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
@@ -50,7 +50,9 @@ jobs:
           mkdir output
           cp -R static/* output/
           cp -R firmwares/* output/
-      - name: Copy manifest files to root and modify paths # This is required so that older firmwares can update to newer firmwares with new manifest paths
+      - name: Copy manifest files to root and modify paths   
+      # This is required so that older firmwares can update 
+      # to newer firmwares with new manifest paths
         run: |-
           for device in firmwares/*; do
             device=$(basename $device)
@@ -61,8 +63,8 @@ jobs:
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:
-          path: output    
-      
+          path: output
+
 
 
   deploy:
@@ -82,4 +84,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
+
               

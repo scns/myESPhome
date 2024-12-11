@@ -21,6 +21,10 @@ jobs:
         esphome/garagedoor.yaml
         esphome/ds18b20.yaml
         esphome/ds18b20_beta.yaml
+        esphome/dth22.yaml
+        esphome/ikea_fornuftig.yaml
+        esphome/ikea_uppatvind.yaml
+        esphome/kemo_m152.yaml
         
       esphome-version: 2024.10.0
       release-url: "https://github.com/scns/myESPhome/releases"

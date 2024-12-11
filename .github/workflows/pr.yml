@@ -22,7 +22,7 @@ jobs:
       release-summary: "** Check the release notes for more information. **"
 
   build-vindriktning:
-    name: Build firmware vindriktning 🛠️
+    name: Build firmware Vindriktning 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
       files: |
@@ -33,7 +33,7 @@ jobs:
       release-summary: "** Check the release notes for more information. **"
 
   build-bluetoothproxy:
-    name: Build firmware bluetoothproxy 🛠️
+    name: Build firmware Bluetoothproxy 🛠️
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
       files: |
@@ -75,17 +75,59 @@ jobs:
         esphome-version: 2024.10.0
         release-url: "https://github.com/scns/myESPhome/releases"
         release-summary: "** Check the release notes for more information. **"          
- 
 
-              
+  build-dth22:
+    name: Build firmware DTH22 🛠️
+    uses: esphome/workflows/.github/workflows/build.yml@main
+    with:
+        files: |
+          esphome/dth22.yaml
+
+        esphome-version: 2024.10.0
+        release-url: "https://github.com/scns/myESPhome/releases"
+        release-summary: "** Check the release notes for more information. **"   
+    
+  build-ikea_fornuftig:
+    name: Build firmware Ikea Fornuftig 🛠️
+    uses: esphome/workflows/.github/workflows/build.yml@main
+    with:
+        files: |
+          esphome/ikea_fornuftig.yaml
+
+        esphome-version: 2024.10.0
+        release-url: "https://github.com/scns/myESPhome/releases"
+        release-summary: "** Check the release notes for more information. **"   
+
+  build-ikea_uppatvind:
+    name: Build firmware Ikea Uppatvind 🛠️
+    uses: esphome/workflows/.github/workflows/build.yml@main
+    with:
+        files: |
+          esphome/ikea_uppatvind.yaml
+
+        esphome-version: 2024.10.0
+        release-url: "https://github.com/scns/myESPhome/releases"
+        release-summary: "** Check the release notes for more information. **"           
+
+  build-kemo_m152:
+    name: Build firmware KEMO M152 🛠️
+    uses: esphome/workflows/.github/workflows/build.yml@main
+    with:
+        files: |
+          esphome/kemo_m152.yaml
+
+        esphome-version: 2024.10.0
+        release-url: "https://github.com/scns/myESPhome/releases"
+        release-summary: "** Check the release notes for more information. **"    
+          
   comment-luxmeter:
     if: github.event_name == 'pull_request'
-    name: Comment on PR
+    name: Comment on PR Luxmeter
     runs-on: ubuntu-latest
     needs:
       - build-luxmeter
     steps:
-      - name: Comment on PR
+      - name: Comment on PR Luxmeter
         uses: actions/github-script@v7.0.1
         with:
           script: |-
@@ -110,12 +152,12 @@ jobs:
 
   comment-vindriktning:
     if: github.event_name == 'pull_request'
-    name: Comment on PR
+    name: Comment on PR vindriktning
     runs-on: ubuntu-latest
     needs:
         - build-vindriktning
     steps:
-        - name: Comment on PR
+        - name: Comment on PR vindriktning
           uses: actions/github-script@v7.0.1
           with:
             script: |-
@@ -140,12 +182,12 @@ jobs:
 
   comment-bluetoothproxy:
     if: github.event_name == 'pull_request'
-    name: Comment on PR
+    name: Comment on PR bluetoothproxy
     runs-on: ubuntu-latest
     needs:
         - build-bluetoothproxy
     steps:
-        - name: Comment on PR
+        - name: Comment on PR bluetoothproxy
           uses: actions/github-script@v7.0.1
           with:
                 script: |-
@@ -170,12 +212,12 @@ jobs:
 
   comment-garagedoor:
     if: github.event_name == 'pull_request'
-    name: Comment on PR
+    name: Comment on PR garagedoor
     runs-on: ubuntu-latest
     needs:
         - build-garagedoor
     steps:
-        - name: Comment on PR
+        - name: Comment on PR garagedoor
           uses: actions/github-script@v7.0.1
           with:
                 script: |-
@@ -200,12 +242,12 @@ jobs:
 
   comment-ds18b20:
         if: github.event_name == 'pull_request'
-        name: Comment on PR
+        name: Comment on PR ds18b20
         runs-on: ubuntu-latest
         needs:
             - build-ds18b20
         steps:
-            - name: Comment on PR
+            - name: Comment on PR ds18b20
               uses: actions/github-script@v7.0.1
               with:
                     script: |-
@@ -227,15 +269,44 @@ jobs:
     
                         [download]: ${url}`
                         })
-             
   comment-ds18b20_beta:
+    if: github.event_name == 'pull_request'
+    name: Comment on PR ds18b20_beta
+    runs-on: ubuntu-latest
+    needs:
+        - build-ds18b20_beta
+    steps:
+        - name: Comment on PR ds18b20_beta
+          uses: actions/github-script@v7.0.1
+          with:
+                script: |-
+                    const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        run_id: context.runId,
+                    })
+                    const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts/${artifacts['data']['artifacts'][0]['id']}`
+                    await github.rest.issues.createComment({
+                        issue_number: context.issue.number,
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        body: `Firmware built successfully! :tada:
+
+                    [Download][download] and extract the firmware to install with https://web.esphome.io
+
+                    Make sure to choose \`ds18b20.factory.bin\`.
+
+                    [download]: ${url}`
+                    })
+                        
+  comment-dth22:
         if: github.event_name == 'pull_request'
-        name: Comment on PR
+        name: Comment on PR dth22
         runs-on: ubuntu-latest
         needs:
-            - build-ds18b20_beta
+            - build-dth22
         steps:
-            - name: Comment on PR
+            - name: Comment on PR dth22
               uses: actions/github-script@v7.0.1
               with:
                     script: |-
@@ -253,7 +324,98 @@ jobs:
     
                         [Download][download] and extract the firmware to install with https://web.esphome.io
     
-                        Make sure to choose \`ds18b20_beta.factory.bin\`.
+                        Make sure to choose \`dth22.factory.bin\`.
     
                         [download]: ${url}`
                         })                        
+
+  comment-kemo_m152:
+    if: github.event_name == 'pull_request'
+    name: Comment on PR kemo_m152
+    runs-on: ubuntu-latest
+    needs:
+        - build-kemo_m152
+    steps:
+        - name: Comment on PR kemo_m152
+          uses: actions/github-script@v7.0.1
+          with:
+                script: |-
+                    const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        run_id: context.runId,
+                    })
+                    const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts/${artifacts['data']['artifacts'][0]['id']}`
+                    await github.rest.issues.createComment({
+                        issue_number: context.issue.number,
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        body: `Firmware built successfully! :tada:
+
+                    [Download][download] and extract the firmware to install with https://web.esphome.io
+
+                    Make sure to choose \`kemo_m152.factory.bin\`.
+
+                    [download]: ${url}`
+                    })      
+
+  comment-ikea_fornuftig:
+    if: github.event_name == 'pull_request'
+    name: Comment on PR ikea_fornuftig
+    runs-on: ubuntu-latest
+    needs:
+        - build-ikea_fornuftig
+    steps:
+        - name: Comment on PR ikea_fornuftig
+          uses: actions/github-script@v7.0.1
+          with:
+                script: |-
+                    const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        run_id: context.runId,
+                    })
+                    const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts/${artifacts['data']['artifacts'][0]['id']}`
+                    await github.rest.issues.createComment({
+                        issue_number: context.issue.number,
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        body: `Firmware built successfully! :tada:
+
+                    [Download][download] and extract the firmware to install with https://web.esphome.io
+
+                    Make sure to choose \`ikea_fornuftig.factory.bin\`.
+
+                    [download]: ${url}`
+                    })      
+
+  comment-ikea_uppatvind:
+    if: github.event_name == 'pull_request'
+    name: Comment on PR ikea_uppatvind
+    runs-on: ubuntu-latest
+    needs:
+        - build-ikea_uppatvind
+    steps:
+        - name: Comment on PR ikea_uppatvind
+          uses: actions/github-script@v7.0.1
+          with:
+                script: |-
+                    const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        run_id: context.runId,
+                    })
+                    const url = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts/${artifacts['data']['artifacts'][0]['id']}`
+                    await github.rest.issues.createComment({
+                        issue_number: context.issue.number,
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        body: `Firmware built successfully! :tada:
+
+                    [Download][download] and extract the firmware to install with https://web.esphome.io
+
+                    Make sure to choose \`ikea_fornuftig.factory.bin\`.
+
+                    [download]: ${url}`
+                    })      
+                                      

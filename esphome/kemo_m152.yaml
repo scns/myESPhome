@@ -5,7 +5,7 @@
 # © Maarten Schmeitz
 #
 substitutions:
-  device_name: "KEMO M152"
+  device_name: "kemo_m142"
   
 esphome:
   name: '${device_name}'

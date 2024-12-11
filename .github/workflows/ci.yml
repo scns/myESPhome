@@ -22,6 +22,11 @@ jobs:
           - esphome/garagedoor
           - esphome/ds18b20
           - esphome/ds18b20_beta
+          - esphome/dth22
+          - esphome/ikea_fornuftig
+          - esphome/ikea_uppatvind.yaml
+          - esphome/kemo_m152.yaml
+
         esphome-version:
           - latest
           - beta

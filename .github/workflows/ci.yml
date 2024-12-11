@@ -24,8 +24,8 @@ jobs:
           - esphome/ds18b20_beta
           - esphome/dth22
           - esphome/ikea_fornuftig
-          - esphome/ikea_uppatvind.yaml
-          - esphome/kemo_m152.yaml
+          - esphome/ikea_uppatvind
+          - esphome/kemo_m152
 
         esphome-version:
           - latest

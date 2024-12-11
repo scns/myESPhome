@@ -1,7 +1,7 @@
 ---
-# vindriktning 
+# DTH22 Sensor
 #
-# a simple ESPHome integration to make an DTH22 sensor to work with HA 
+# A simple ESPHome integration for DTH22 sensor with Home Assistant
 # © Maarten Schmeitz
 #
 substitutions:

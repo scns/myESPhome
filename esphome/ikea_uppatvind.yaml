@@ -5,7 +5,7 @@
 # © Maarten Schmeitz
 #
 substitutions:
-  device_name: "IKEA UPPÅTVIND"
+  device_name: "ikea_uppatvind" 
   
 esphome:
   name: '${device_name}'

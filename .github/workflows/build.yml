@@ -26,7 +26,7 @@ jobs:
         esphome/ikea_uppatvind.yaml
         esphome/kemo_m152.yaml
         
-      esphome-version: 2024.10.0
+      esphome-version: 2024.12.2
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
 

@@ -17,7 +17,7 @@ jobs:
       files: |
         esphome/luxmeter.yaml
         
-      esphome-version: 2024.10.0
+      esphome-version: 2024.12.2
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
 
@@ -28,7 +28,7 @@ jobs:
       files: |
         esphome/vindriktning.yaml
         
-      esphome-version: 2024.10.0
+      esphome-version: 2024.12.2
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
 
@@ -39,7 +39,7 @@ jobs:
       files: |
         esphome/bluetoothproxy.yaml
         
-      esphome-version: 2024.10.0
+      esphome-version: 2024.12.2
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"
 
@@ -50,7 +50,7 @@ jobs:
       files: |
         esphome/garagedoor.yaml
     
-      esphome-version: 2024.10.0
+      esphome-version: 2024.12.2
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"    
 
@@ -61,7 +61,7 @@ jobs:
       files: |
        esphome/ds18b20.yaml
 
-      esphome-version: 2024.10.0
+      esphome-version: 2024.12.2
       release-url: "https://github.com/scns/myESPhome/releases"
       release-summary: "** Check the release notes for more information. **"        
   
@@ -72,7 +72,7 @@ jobs:
         files: |
           esphome/ds18b20_beta.yaml
 
-        esphome-version: 2024.10.0
+        esphome-version: 2024.12.2
         release-url: "https://github.com/scns/myESPhome/releases"
         release-summary: "** Check the release notes for more information. **"          
 
@@ -83,7 +83,7 @@ jobs:
         files: |
           esphome/dth22.yaml
 
-        esphome-version: 2024.10.0
+        esphome-version: 2024.12.2
         release-url: "https://github.com/scns/myESPhome/releases"
         release-summary: "** Check the release notes for more information. **"   
     
@@ -94,7 +94,7 @@ jobs:
         files: |
           esphome/ikea_fornuftig.yaml
 
-        esphome-version: 2024.10.0
+        esphome-version: 2024.12.2
         release-url: "https://github.com/scns/myESPhome/releases"
         release-summary: "** Check the release notes for more information. **"   
 
@@ -105,7 +105,7 @@ jobs:
         files: |
           esphome/ikea_uppatvind.yaml
 
-        esphome-version: 2024.10.0
+        esphome-version: 2024.12.2
         release-url: "https://github.com/scns/myESPhome/releases"
         release-summary: "** Check the release notes for more information. **"           
 
@@ -116,7 +116,7 @@ jobs:
         files: |
           esphome/kemo_m152.yaml
 
-        esphome-version: 2024.10.0
+        esphome-version: 2024.12.2
         release-url: "https://github.com/scns/myESPhome/releases"
         release-summary: "** Check the release notes for more information. **"    
           

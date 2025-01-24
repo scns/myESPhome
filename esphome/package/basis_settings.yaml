@@ -43,6 +43,10 @@ sensor:
 
   - platform: uptime
     id: ${device_name}_uptime
+ 
+  - platform: esp8266_runtime
+    free_heap:
+      name: "ESP8266 Free Heap"
 
   - platform: template
     id: ${device_name}_uptime_timestamp

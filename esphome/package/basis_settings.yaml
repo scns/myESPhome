@@ -1,7 +1,7 @@
 substitutions:
-  project_version: "3.2.4"
+  project_version: "3.3.1"
   device_description: "${device_name} build by Maarten Schmeitz (scns). Version ${project_version}. (https://github.com/scns)"
-  date: "24-10-2024"
+  date: "24-01-2025"
 
 preferences:
   flash_write_interval: 120min 

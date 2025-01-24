@@ -1,5 +1,5 @@
 substitutions:
-  project_version: "3.3.1"
+  project_version: "3.3.2"
   device_description: "${device_name} build by Maarten Schmeitz (scns). Version ${project_version}. (https://github.com/scns)"
   date: "24-01-2025"
 
@@ -43,6 +43,10 @@ sensor:
 
   - platform: uptime
     id: ${device_name}_uptime
+ 
+  - platform: esp8266_runtime
+    free_heap:
+      name: "ESP8266 Free Heap"
 
   - platform: template
     id: ${device_name}_uptime_timestamp

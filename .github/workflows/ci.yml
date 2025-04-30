@@ -35,7 +35,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4.2.2
       - name: ESPHome ${{ matrix.esphome-version }}
-        uses: esphome/build-action@v6.0.0
+        uses: esphome/build-action@v6.0.1
         with:
           yaml-file: ${{ matrix.file }}.yaml
           version: ${{ matrix.esphome-version }}

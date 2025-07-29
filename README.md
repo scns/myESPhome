@@ -47,7 +47,7 @@ Maak een "issue" aan. Ik zal zo snel mogelijk regageren
 
 ### Discord
 
-Ik ben een actieve member van de Huizebruin Discord groep. Mocht je vragen hebben kun je altijd lid worden van dit kanaal en contact met me zoeken. (schmm)
+Ik ben een actieve member van de Huizebruin Domotica Community Discord groep. Mocht je vragen hebben kun je altijd lid worden van dit kanaal en contact met me zoeken. (schmm)
 En natuurlijk ook in contact komen met meerdere HomeAssistant gebruikers!
 
 [![Discord][discord-shield]][discord]

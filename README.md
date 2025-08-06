@@ -75,6 +75,8 @@ A light sensor project using the BH1750 sensor to measure ambient light levels i
 | WEMOS D1 Mini | 1 | ESP8266-based development board |
 | BH1750 sensor | 1 | Digital light intensity sensor |
 | Jumper wires | 4 | For I2C connections |
+
+> **Note:** Some earlier documentation or sources may refer to the 'BH1780' sensor, but the correct model for this project is the 'BH1750' digital light sensor.
 | Breadboard (optional) | 1 | For prototyping |
 
 #### Wiring

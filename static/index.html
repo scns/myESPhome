@@ -20,7 +20,7 @@
   <meta property="og:description" content="MyESPHome" />
   <meta property="og:image" content="./stuff/logo.webp" />
   <meta property="og:image:alt" content="MyESPHome logo" />
-  <script src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module" integrity="sha384-gugQ6PELTRVfKNYWF/V9cA0EVPc55HFXvLDPTe9CeYAG8YoOBJyICok9wy73ynru" crossorigin="anonymous"></script>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PGXPS6Q7Y0"></script>
   <script>
@@ -89,9 +89,9 @@
             </table>
 
             <br>
-            <p class="button-row text-center">
-              <esp-web-install-button></esp-web-install-button>
-            </p>
+  <div class="text-center">
+    <esp-web-install-button></esp-web-install-button>
+  </div>
           </div>
 
           <br>

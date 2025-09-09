@@ -128,7 +128,7 @@ jobs:
       - build-luxmeter
     steps:
       - name: Comment on PR Luxmeter
-        uses: actions/github-script@v7.1.0
+        uses: actions/github-script@v8.0.0
         with:
           script: |-
             const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -158,7 +158,7 @@ jobs:
         - build-vindriktning
     steps:
         - name: Comment on PR vindriktning
-          uses: actions/github-script@v7.1.0
+          uses: actions/github-script@v8.0.0
           with:
             script: |-
                 const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -188,7 +188,7 @@ jobs:
         - build-bluetoothproxy
     steps:
         - name: Comment on PR bluetoothproxy
-          uses: actions/github-script@v7.1.0
+          uses: actions/github-script@v8.0.0
           with:
                 script: |-
                     const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -218,7 +218,7 @@ jobs:
         - build-garagedoor
     steps:
         - name: Comment on PR garagedoor
-          uses: actions/github-script@v7.1.0
+          uses: actions/github-script@v8.0.0
           with:
                 script: |-
                     const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -248,7 +248,7 @@ jobs:
             - build-ds18b20
         steps:
             - name: Comment on PR ds18b20
-              uses: actions/github-script@v7.1.0
+              uses: actions/github-script@v8.0.0
               with:
                     script: |-
                         const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -277,7 +277,7 @@ jobs:
         - build-ds18b20_beta
     steps:
         - name: Comment on PR ds18b20_beta
-          uses: actions/github-script@v7.1.0
+          uses: actions/github-script@v8.0.0
           with:
                 script: |-
                     const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -307,7 +307,7 @@ jobs:
             - build-dth22
         steps:
             - name: Comment on PR dth22
-              uses: actions/github-script@v7.1.0
+              uses: actions/github-script@v8.0.0
               with:
                     script: |-
                         const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -337,7 +337,7 @@ jobs:
         - build-kemo_m152
     steps:
         - name: Comment on PR kemo_m152
-          uses: actions/github-script@v7.1.0
+          uses: actions/github-script@v8.0.0
           with:
                 script: |-
                     const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -367,7 +367,7 @@ jobs:
         - build-ikea_fornuftig
     steps:
         - name: Comment on PR ikea_fornuftig
-          uses: actions/github-script@v7.1.0
+          uses: actions/github-script@v8.0.0
           with:
                 script: |-
                     const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -397,7 +397,7 @@ jobs:
         - build-ikea_uppatvind
     steps:
         - name: Comment on PR ikea_uppatvind
-          uses: actions/github-script@v7.1.0
+          uses: actions/github-script@v8.0.0
           with:
                 script: |-
                     const artifacts = await github.rest.actions.listWorkflowRunArtifacts({

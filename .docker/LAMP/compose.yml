@@ -1,7 +1,7 @@
 version: '3.8'    #check if there is a new docker compose version
 services:
   web:
-    image: php:8.4-apache    #check the php version you need for your project
+    image: php:8.5-apache    #check the php version you need for your project
     ports:
       - "80:80"    #this line maps your pc port to the container port
     depends_on:

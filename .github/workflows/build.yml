@@ -15,16 +15,16 @@ jobs:
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
       files: |
-        esphome/luxmeter.yaml
-        esphome/vindriktning.yaml
-        esphome/bluetoothproxy.yaml
-        esphome/garagedoor.yaml
-        esphome/ds18b20.yaml
-        esphome/ds18b20_beta.yaml
-        esphome/dth22.yaml
-        esphome/ikea_fornuftig.yaml
-        esphome/ikea_uppatvind.yaml
-        esphome/kemo_m152.yaml
+       # esphome/luxmeter.yaml
+       # esphome/vindriktning.yaml
+       # esphome/bluetoothproxy.yaml
+       # esphome/garagedoor.yaml
+       # esphome/ds18b20.yaml
+       # esphome/ds18b20_beta.yaml
+       # esphome/dth22.yaml
+       # esphome/ikea_fornuftig.yaml
+       # esphome/ikea_uppatvind.yaml
+       # esphome/kemo_m152.yaml
         
       esphome-version: 2024.12.2
       release-url: "https://github.com/scns/myESPhome/releases"

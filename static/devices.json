@@ -1,0 +1,12 @@
+[
+  {"id":"luxmeter","name":"Luxmeter","status":"supported","board":"WEMOS D1 Mini (ESP8266)","chipFamily":"ESP8266"},
+  {"id":"vindriktning","name":"IKEA Vindriktning","status":"supported","board":"WEMOS D1 Mini (ESP8266)","chipFamily":"ESP8266"},
+  {"id":"bluetoothproxy","name":"Bluetooth Proxy","status":"supported","board":"ESP32-C3 DevKitM-1, 4 MB flash","chipFamily":"ESP32-C3"},
+  {"id":"garagedoor","name":"Garage door","status":"experimental","board":"WEMOS D1 Mini (ESP8266)","chipFamily":"ESP8266"},
+  {"id":"ds18b20","name":"DS18B20","status":"concept"},
+  {"id":"ds18b20_beta","name":"DS18B20 beta","status":"concept"},
+  {"id":"dth22","name":"DHT22","status":"concept"},
+  {"id":"ikea_fornuftig","name":"IKEA FORNUFTIG","status":"concept"},
+  {"id":"ikea_uppatvind","name":"IKEA UPPATVIND","status":"concept"},
+  {"id":"kemo_m152","name":"KEMO M152","status":"concept"}
+]

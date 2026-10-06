@@ -2,10 +2,10 @@ body {
     background-color: #D5DBE0 ;
     }
 table {
-     /* border: 0px solid black; /* Solid black border */
+     /* Optional table border. */
     }
 th, td {
-    /*  border: 0px solid black; /* Solid black border */
+    /* Optional cell border. */
       padding: 0.5rem; /* Optional: Add padding for content */
     }
 
@@ -79,4 +79,17 @@ body.show-special .special {
 
 aside.bg-dark {
     margin-bottom: 2rem; /* Adjust the value as needed */
+}.device-choice {
+    display: inline-block;
+    padding: 0.75rem;
+    cursor: pointer;
+}
+
+.device-choice:has(input:checked) {
+    outline: 2px solid #01ab7e;
+    border-radius: 0.25rem;
+}
+
+[hidden] {
+    display: none !important;
 }

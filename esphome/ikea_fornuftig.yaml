@@ -14,7 +14,7 @@ esphome:
   project:
     name: "scns.myESPHome_${device_name}"
     version: "${project_version}"
-  min_version: 2024.6.0
+  min_version: 2026.9.1
 
 esp8266:
   board:  d1_mini
@@ -25,12 +25,6 @@ dashboard_import:
   package_import_url: github://scns/myESPhome/esphome/ikea_fornuftig.yaml
 
 packages:
-  remote_package:
-    url: https://github.com/scns/myESPhome
-    ref: main
-    files:
-      - esphome/package/ikea_fornuftig_update.yaml
-      - esphome/package/basis_esp8266.yaml #specific esp8266 basis settings
-      - esphome/package/ikea_fornuftig.yaml
-      - esphome/package/basis_settings.yaml
-    refresh: 0d
+  basis_esp8266: !include package/basis_esp8266.yaml
+  ikea_fornuftig: !include package/ikea_fornuftig.yaml
+  basis_settings: !include package/basis_settings.yaml

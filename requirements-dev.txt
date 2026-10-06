@@ -1,0 +1,3 @@
+# Keep CI, release builds and local validation on the same version.
+esphome==2026.9.1
+PyYAML==6.0.3

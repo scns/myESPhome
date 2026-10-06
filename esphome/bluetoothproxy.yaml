@@ -14,31 +14,17 @@ esphome:
   project:
     name: "scns.myESPHome_${device_name}"
     version: "${project_version}"
-  min_version: 2024.6.0
-  platformio_options:
-    board_build.f_flash: 40000000L
-    board_build.flash_mode: dio
-    board_build.flash_size: 4MB
-
-
+  min_version: 2026.9.1
 esp32:
   board: esp32-c3-devkitm-1
   framework:
     type: esp-idf
-    sdkconfig_options:
-      CONFIG_BT_BLE_42_FEATURES_SUPPORTED: y
-      CONFIG_BT_BLE_50_FEATURES_SUPPORTED: n
 
 dashboard_import:
   package_import_url: github://scns/myESPhome/esphome/bluetoothproxy.yaml
 
 packages:
-  remote_package:
-    url: https://github.com/scns/myESPhome
-    ref: main
-    files:
-      - esphome/package/bluetoothproxy_update.yaml
-      - esphome/package/basis_esp32.yaml  #specific esp32 basis settings
-      - esphome/package/bluetoothproxy.yaml
-      - esphome/package/basis_settings.yaml
-    refresh: 0d
+  bluetoothproxy_update: !include package/bluetoothproxy_update.yaml
+  basis_esp32: !include package/basis_esp32.yaml
+  bluetoothproxy: !include package/bluetoothproxy.yaml
+  basis_settings: !include package/basis_settings.yaml

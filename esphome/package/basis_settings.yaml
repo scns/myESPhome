@@ -1,17 +1,12 @@
 substitutions:
-  project_version: "3.3.5"
+  project_version: "3.3.6"
   device_description: "${device_name} build by Maarten Schmeitz (scns). Version ${project_version}. (https://github.com/scns)"
-  date: "18-06-2025"
+  date: "06-10-2026"
 
 preferences:
   flash_write_interval: 120min 
   
-safe_mode:
-
-web_server:
-  version: 3
-  port: 80
-
+# Factory bootstrap: no web server or unauthenticated ESPHome OTA.
 wifi:
   ap:
   
@@ -20,16 +15,6 @@ improv_serial:
 captive_portal:
 
 api:
-
-ota:
-  - platform: esphome
-    id: ota_esphome
-  - platform: http_request
-    id: ota_http_request
-
-http_request:
-  verify_ssl: false
-
 
 time:
 - platform: homeassistant
@@ -54,7 +39,7 @@ sensor:
     icon: 'mdi:clock-start'
     entity_category: diagnostic
     lambda: |-
-      static float timestamp = (
+      const float timestamp = (
         id(time_homeassistant).utcnow().timestamp - id(${device_name}_uptime).state
       );
       return timestamp;  
@@ -104,17 +89,3 @@ button:
     name: "${device_name} Restart with Factory Default Settings"
     entity_category: diagnostic
     disabled_by_default: True
-
- # safe mode button
-  - platform: safe_mode
-    name: "${device_name} Safe Mode"
-    entity_category: diagnostic
-    disabled_by_default: True
-
-  - platform: template
-    id: check_for_update_button
-    name: ${device_name} Check for firmware update
-    device_class: update
-    on_press:
-      then:
-        - component.update: update_http_request

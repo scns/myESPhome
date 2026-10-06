@@ -1,4 +1,9 @@
-# ⬇ Enable logging ⬇ # 
 logger:
   level: INFO
 
+http_request:
+  verify_ssl: true
+
+ota:
+  - platform: http_request
+    id: ota_http_request

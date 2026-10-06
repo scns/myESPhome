@@ -1,2 +1,98 @@
-# CONCEPT: hardware pinout and device implementation are not supplied.
-# Excluded from firmware releases. See static/devices.json.
+﻿# Pin mapping: https://edvoncken.net/2024/04/ikea-fornuftig-with-esphome/
+# Hardware modification originally demonstrated by https://github.com/3ative/ikea-air-filter
+# Experimental: verify the PCB revision and wiring before connecting power.
+substitutions:
+  fornuftig_filter_hours: "4320"  # Configurable reminder, not a dust measurement.
+
+preferences:
+  flash_write_interval: 5min
+
+globals:
+  - id: fornuftig_runtime_minutes
+    type: uint32_t
+    restore_value: true
+    initial_value: '0'
+
+output:
+  - platform: gpio
+    id: fornuftig_motor_enable
+    pin: GPIO14  # D5 -> top of R13; cut the trace to U1 first.
+  - platform: esp8266_pwm
+    id: fornuftig_clock
+    pin: GPIO13  # D7 -> CLK
+    frequency: 50 Hz
+  - platform: template
+    id: fornuftig_speed_output
+    type: float
+    write_action:
+      - if:
+          condition:
+            lambda: return state > 0.0f;
+          then:
+            - output.esp8266_pwm.set_frequency:
+                id: fornuftig_clock
+                frequency: !lambda return roundf(state * 6.0f) * 50.0f;
+            - output.set_level:
+                id: fornuftig_clock
+                level: 50%
+            - output.turn_on: fornuftig_motor_enable
+          else:
+            - output.turn_off: fornuftig_motor_enable
+            - output.turn_off: fornuftig_clock
+
+fan:
+  - platform: speed
+    id: fornuftig_fan
+    name: "${device_name} Fan"
+    output: fornuftig_speed_output
+    speed_count: 6
+    restore_mode: ALWAYS_OFF
+
+sensor:
+  - platform: pulse_counter
+    id: fornuftig_feedback
+    name: "${device_name} Fan feedback"
+    pin: GPIO12  # D6 -> FG through a series 10 kOhm resistor.
+    count_mode:
+      rising_edge: INCREMENT
+      falling_edge: DISABLE
+    update_interval: 10s
+    unit_of_measurement: "pulses/min"
+    accuracy_decimals: 0
+    entity_category: diagnostic
+  - platform: template
+    name: "${device_name} Filter runtime"
+    id: fornuftig_runtime
+    unit_of_measurement: h
+    accuracy_decimals: 1
+    state_class: total_increasing
+    update_interval: 60s
+    lambda: return id(fornuftig_runtime_minutes) / 60.0f;
+
+interval:
+  - interval: 60s
+    then:
+      - lambda: |-
+          // Count only minutes with a running fan and valid motor feedback.
+          if (id(fornuftig_fan).state &&
+              !isnan(id(fornuftig_feedback).state) && id(fornuftig_feedback).state > 0) {
+            id(fornuftig_runtime_minutes) += 1;
+          }
+
+binary_sensor:
+  - platform: template
+    name: "${device_name} Filter reminder"
+    device_class: problem
+    lambda: return id(fornuftig_runtime_minutes) >= ${fornuftig_filter_hours}UL * 60UL;
+
+button:
+  - platform: template
+    name: "${device_name} Reset filter runtime"
+    entity_category: config
+    on_press:
+      - globals.set:
+          id: fornuftig_runtime_minutes
+          value: '0'
+      - sensor.template.publish:
+          id: fornuftig_runtime
+          state: 0

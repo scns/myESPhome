@@ -1,0 +1,19 @@
+﻿# Optional BME680. Include this package only when the sensor is connected.
+# D1/GPIO5 -> SCL, D2/GPIO4 -> SDA, 3V3 -> VCC, G -> GND.
+# Standard driver: gas resistance is not a CO2 measurement or an IAQ index.
+i2c:
+  scl: GPIO5
+  sda: GPIO4
+  scan: true
+sensor:
+  - platform: bme680
+    address: 0x77  # Change to 0x76 if required by your breakout.
+    temperature:
+      name: "${device_name} Temperature"
+    pressure:
+      name: "${device_name} Pressure"
+    humidity:
+      name: "${device_name} Humidity"
+    gas_resistance:
+      name: "${device_name} Gas resistance"
+    update_interval: 60s

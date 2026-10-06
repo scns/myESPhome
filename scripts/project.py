@@ -84,6 +84,13 @@ def validate(root=ROOT):
             try:
                 create(device['id'], destination.name, root)
                 validate_config(destination / 'device.yaml')
+                if device['id'] == 'ikea_fornuftig':
+                    # Exercise the optional sensor alongside the secured fan package.
+                    path = destination / 'device.yaml'
+                    text = path.read_text(encoding='utf-8').replace(
+                        'packages:\n', 'packages:\n  air_sensor: !include ../../package/ikea_fornuftig_bme680.yaml\n')
+                    path.write_text(text, encoding='utf-8')
+                    validate_config(path)
             finally:
                 if destination.exists():
                     shutil.rmtree(destination)

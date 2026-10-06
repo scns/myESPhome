@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123c34">
+  <title>IKEA FÖRNUFTIG build guide | MyESPHome</title>
+  <meta name="description" content="Build an IKEA FÖRNUFTIG ESPHome air purifier with wiring diagram, six-speed fan YAML and optional BME680 sensor.">
+  <meta property="og:title" content="IKEA FÖRNUFTIG build guide | MyESPHome">
+  <meta property="og:description" content="Build an IKEA FÖRNUFTIG ESPHome air purifier with wiring diagram, six-speed fan YAML and optional BME680 sensor.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://myesphome.assistantathome.nl/stuff/logo.webp">
+  <meta property="og:image:alt" content="MyESPHome house and wireless logo">
+  <link rel="icon" type="image/webp" href="./stuff/logo.webp">
+  <link rel="stylesheet" href="./styles.css">
+
+  <script src="./scripts/script.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="./index.html" aria-label="MyESPHome home"><span class="brand-mark"><svg class="icon " aria-hidden="true"><use href="./stuff/icons.svg#home"></use></svg></span>my<span>ESP</span>home<span class="brand-dot">.</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><svg class="icon " aria-hidden="true"><use href="./stuff/icons.svg#menu"></use></svg></button>
+    <nav id="site-nav" aria-label="Main navigation">
+      <a href="./index.html#projects">Projects</a><a href="./index.html#how-it-works">How it works</a>
+      <a href="./affiliate.html" >Parts &amp; cases</a>
+      <a href="./contact.html" >Contact</a>
+      <a class="nav-github" href="https://github.com/scns/myESPhome" target="_blank" rel="noopener noreferrer"><svg class="icon " aria-hidden="true"><use href="./stuff/icons.svg#github"></use></svg>GitHub<svg class="icon " aria-hidden="true"><use href="./stuff/icons.svg#external"></use></svg></a>
+    </nav>
+  </div>
+</header>
+<main id="main-content" class="shell build-guide">
+<p class="eyebrow">AIR &amp; ENVIRONMENT / BUILD GUIDE</p><h1>IKEA FÖRNUFTIG.<br>A smarter breath of air.</h1>
+<p>Six fan speeds in Home Assistant, motor feedback and a configurable filter reminder. Built around a WEMOS D1 Mini.</p>
+<p><span class="status-badge experimental">Experimental</span> YAML validation is automated. Hardware operation still needs verification on your PCB revision; no browser firmware is published for this project.</p>
+<nav class="guide-links" aria-label="On this page"><a href="#wiring">Wiring</a><a href="#setup">Setup</a><a href="#yaml">YAML</a><a href="#sensor">Optional sensor</a></nav>
+<section id="wiring"><h2>Make the connections</h2>
+<p>Disconnect the original power adapter before modifying the board. Use a regulator rated for 24 V input and regulated 5 V output. Never connect the 24 V supply to the ESP’s 5V, 3V3 or GPIO pins. Measure its output before connecting the ESP.</p>
+<figure><img src="./stuff/fornuftig-wiring.svg" alt="FÖRNUFTIG connections: FG through 10 kΩ to D6, CLK to D7, R13 to D5, regulated 5 V and common ground."/><figcaption>Signal mapping follows Ed Voncken’s modification. Use the original photos to identify R13 and the trace to U1 on your PCB.</figcaption></figure>
+<a class="text-link" href="./stuff/fornuftig-wiring.svg" download>Download wiring diagram (SVG)</a>
+<div class="guide-table"><table><thead><tr><th>Connection</th><th>Wiring</th><th>D1 Mini</th></tr></thead><tbody><tr><td>FG</td><td>10 kΩ series resistor</td><td>D6 / GPIO12</td></tr><tr><td>CLK</td><td>Direct connection</td><td>D7 / GPIO13</td></tr><tr><td>R13 motor control</td><td>Cut R13 → U1 trace first</td><td>D5 / GPIO14</td></tr><tr><td>Regulator +5 V</td><td>Regulated supply only</td><td>5V</td></tr><tr><td>Common ground</td><td>PCB + regulator + ESP</td><td>G / GND</td></tr></tbody></table></div>
+<p>Cut the trace between the top of R13 and U1 before connecting D5. This modification replaces the original speed knob, filter reset button and filter LED control. Check the original guide’s board photos before soldering.</p>
+</section>
+<section id="setup"><h2>Configure your device</h2><ol><li>Download or clone this repository. Install Python and <code>pip install -r requirements-dev.txt</code>.</li><li>Generate a personal configuration:<pre><code>python scripts/secure_setup.py ikea_fornuftig --name fornuftig-livingroom</code></pre></li><li>Edit Wi-Fi details in <code>esphome/private/fornuftig-livingroom/secrets.yaml</code>. The generator supplies unique API encryption and OTA credentials.</li><li>Flash over USB:<pre><code>esphome run esphome/private/fornuftig-livingroom/device.yaml</code></pre></li><li>Check that startup leaves the motor off. Test each speed, stop, feedback and restart before closing the housing. Add the discovered ESPHome device to Home Assistant with its generated encryption key.</li></ol>
+<p>The fan starts off after every restart. Feedback is reported as pulses per minute, since the motor’s pulses per revolution have not been verified. The filter counter accumulates minutes with motor feedback; it is saved every five minutes. A sudden power loss can lose recent runtime.</p>
+<p>The default reminder is 4,320 running hours. Adjust <code>fornuftig_filter_hours</code> in your personal substitutions. This is a maintenance estimate, not measured filter contamination. Use “Reset filter runtime” after replacing the filter.</p>
+<a class="button button-outline" href="https://github.com/scns/myESPhome/blob/main/esphome/ikea_fornuftig.yaml">Complete project configuration on GitHub</a>
+</section><section id="yaml"><h2>The device YAML</h2><p>This is the device package. The complete configuration above includes it together with the shared settings. Wi-Fi and credentials belong in your personal configuration.</p><details><summary>View fan control and filter runtime YAML</summary><pre><code># Pin mapping: https://edvoncken.net/2024/04/ikea-fornuftig-with-esphome/
+# Hardware modification originally demonstrated by https://github.com/3ative/ikea-air-filter
+# Experimental: verify the PCB revision and wiring before connecting power.
+substitutions:
+  fornuftig_filter_hours: &quot;4320&quot;  # Configurable reminder, not a dust measurement.
+
+preferences:
+  flash_write_interval: 5min
+
+globals:
+  - id: fornuftig_runtime_minutes
+    type: uint32_t
+    restore_value: true
+    initial_value: &#x27;0&#x27;
+
+output:
+  - platform: gpio
+    id: fornuftig_motor_enable
+    pin: GPIO14  # D5 -&gt; top of R13; cut the trace to U1 first.
+  - platform: esp8266_pwm
+    id: fornuftig_clock
+    pin: GPIO13  # D7 -&gt; CLK
+    frequency: 50 Hz
+  - platform: template
+    id: fornuftig_speed_output
+    type: float
+    write_action:
+      - if:
+          condition:
+            lambda: return state &gt; 0.0f;
+          then:
+            - output.esp8266_pwm.set_frequency:
+                id: fornuftig_clock
+                frequency: !lambda return roundf(state * 6.0f) * 50.0f;
+            - output.set_level:
+                id: fornuftig_clock
+                level: 50%
+            - output.turn_on: fornuftig_motor_enable
+          else:
+            - output.turn_off: fornuftig_motor_enable
+            - output.turn_off: fornuftig_clock
+
+fan:
+  - platform: speed
+    id: fornuftig_fan
+    name: &quot;${device_name} Fan&quot;
+    output: fornuftig_speed_output
+    speed_count: 6
+    restore_mode: ALWAYS_OFF
+
+sensor:
+  - platform: pulse_counter
+    id: fornuftig_feedback
+    name: &quot;${device_name} Fan feedback&quot;
+    pin: GPIO12  # D6 -&gt; FG through a series 10 kOhm resistor.
+    count_mode:
+      rising_edge: INCREMENT
+      falling_edge: DISABLE
+    update_interval: 10s
+    unit_of_measurement: &quot;pulses/min&quot;
+    accuracy_decimals: 0
+    entity_category: diagnostic
+  - platform: template
+    name: &quot;${device_name} Filter runtime&quot;
+    id: fornuftig_runtime
+    unit_of_measurement: h
+    accuracy_decimals: 1
+    state_class: total_increasing
+    update_interval: 60s
+    lambda: return id(fornuftig_runtime_minutes) / 60.0f;
+
+interval:
+  - interval: 60s
+    then:
+      - lambda: |-
+          // Count only minutes with a running fan and valid motor feedback.
+          if (id(fornuftig_fan).state &amp;&amp;
+              !isnan(id(fornuftig_feedback).state) &amp;&amp; id(fornuftig_feedback).state &gt; 0) {
+            id(fornuftig_runtime_minutes) += 1;
+          }
+
+binary_sensor:
+  - platform: template
+    name: &quot;${device_name} Filter reminder&quot;
+    device_class: problem
+    lambda: return id(fornuftig_runtime_minutes) &gt;= ${fornuftig_filter_hours}UL * 60UL;
+
+button:
+  - platform: template
+    name: &quot;${device_name} Reset filter runtime&quot;
+    entity_category: config
+    on_press:
+      - globals.set:
+          id: fornuftig_runtime_minutes
+          value: &#x27;0&#x27;
+      - sensor.template.publish:
+          id: fornuftig_runtime
+          state: 0
+</code></pre></details></section>
+<section id="sensor"><h2>Add a BME680, optionally</h2><p>The fan works without an environmental sensor. To add a BME680, connect its 3.3 V supply and I²C pins as shown above, then add this package beside your existing package in the generated personal configuration:</p><pre><code>packages:
+  device: !include ../../ikea_fornuftig.yaml
+  air_sensor: !include ../../package/ikea_fornuftig_bme680.yaml</code></pre>
+<p>This standard driver reports temperature, humidity, pressure and gas resistance. It does not calculate IAQ or CO₂ equivalent as the article’s Bosch BSEC library does. Check whether your breakout uses address 0x77 or 0x76.</p><details><summary>View optional BME680 YAML</summary><pre><code># Optional BME680. Include this package only when the sensor is connected.
+# D1/GPIO5 -&gt; SCL, D2/GPIO4 -&gt; SDA, 3V3 -&gt; VCC, G -&gt; GND.
+# Standard driver: gas resistance is not a CO2 measurement or an IAQ index.
+i2c:
+  scl: GPIO5
+  sda: GPIO4
+  scan: true
+sensor:
+  - platform: bme680
+    address: 0x77  # Change to 0x76 if required by your breakout.
+    temperature:
+      name: &quot;${device_name} Temperature&quot;
+    pressure:
+      name: &quot;${device_name} Pressure&quot;
+    humidity:
+      name: &quot;${device_name} Humidity&quot;
+    gas_resistance:
+      name: &quot;${device_name} Gas resistance&quot;
+    update_interval: 60s
+</code></pre></details></section>
+<section><h2>Credit &amp; original build</h2><p>Hardware mapping: <a href="https://edvoncken.net/2024/04/ikea-fornuftig-with-esphome/">Ed Voncken’s FÖRNUFTIG article and PCB photos</a>, following <a href="https://github.com/3ative/ikea-air-filter">David Martin / 3ATIVE’s original project</a>. This repository provides a new ESPHome implementation with a native fan entity and runtime-based maintenance reminder.</p></section>
+</main><footer class="site-footer">
+  <div class="shell footer-main">
+    <div><a class="brand" href="./index.html"><span class="brand-mark"><svg class="icon " aria-hidden="true"><use href="./stuff/icons.svg#home"></use></svg></span>my<span>ESP</span>home<span class="brand-dot">.</span></a><p>A little hardware. A home full of possibilities.</p></div>
+    <div class="footer-links"><a href="https://github.com/scns/myESPhome">Source code</a><a href="https://github.com/scns/myESPhome/releases">Releases</a><a href="https://github.com/scns/myESPhome/blob/main/LICENSE">MIT license</a><a href="./contact.html">Get in touch</a></div>
+  </div>
+  <div class="shell footer-bottom"><span>Made by <a href="https://maarten-schmeitz.nl">Maarten Schmeitz</a> <span aria-hidden="true">&middot;</span> <span data-year>2026</span></span><span>Built with <a href="https://esphome.io">ESPHome</a>. Installed with <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a>.</span></div>
+</footer>
+</body>
+</html>

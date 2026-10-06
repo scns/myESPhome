@@ -106,3 +106,12 @@ The repository does not specify their sensor pins, wiring or actuator interfaces
 Add the actual hardware mapping and device component, validate and test it on
 hardware, then change its catalogue status. Do not publish a base-only firmware
 as a working device.
+
+## IKEA FORNUFTIG
+
+The experimental fan package follows Ed Voncken's D5/D6/D7 wiring modification.
+`static/ikea-fornuftig.html` documents the schematic, personal setup and optional
+BME680 package. Keep the displayed YAML in this guide in sync with the two source
+packages when changing them. CI validates the optional sensor with the secured fan
+configuration. The fan is excluded from browser installation and firmware builds
+until its wiring and operation have been verified on physical hardware.

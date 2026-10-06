@@ -1,14 +1,14 @@
-version: '3'
 services:
   esphome:
     container_name: esphomebeta
-    image: ghcr.io/esphome/esphome:latest
+    image: ghcr.io/esphome/esphome:beta
     volumes:
-      - ./config:/config
+      - ../../esphome:/config
       - /etc/localtime:/etc/localtime:ro
     restart: always
     privileged: true
-    network_mode: host
+    ports:
+      - '127.0.0.1:6053:6052'
     environment:
-      - USERNAME=${ESPHOME_USERNAME}
-      - PASSWORD=${ESPHOME_PASSWORD}
+      - USERNAME=${ESPHOME_USERNAME:?Set ESPHOME_USERNAME in .env}
+      - PASSWORD=${ESPHOME_PASSWORD:?Set ESPHOME_PASSWORD in .env}

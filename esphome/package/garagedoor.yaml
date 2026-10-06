@@ -1,27 +1,137 @@
+esphome:
+  on_boot:
+    priority: -100
+    then:
+      - script.execute: refresh_door_state
+
+globals:
+  - id: travel_timed_out
+    type: bool
+    restore_value: false
+    initial_value: 'false'
+  - id: door_stop_requested
+    type: bool
+    restore_value: false
+    initial_value: 'false'
+
 switch:
   - platform: template
     name: "Virtual Lock"
     id: virtual_lock
     optimistic: true
+    restore_mode: ALWAYS_ON
   - platform: gpio
     pin: D5
     name: "Door relay"
     id: door_relay
     internal: true
-    on_turn_on:
-    - delay: 250ms
-    - switch.turn_off: door_relay
-    
+    restore_mode: ALWAYS_OFF
+
+script:
+  - id: pulse_door_relay
+    mode: single
+    then:
+      - switch.turn_on: door_relay
+      - delay: 250ms
+      - switch.turn_off: door_relay
+  - id: monitor_door_travel
+    mode: restart
+    parameters:
+      opening: bool
+    then:
+      - globals.set:
+          id: travel_timed_out
+          value: 'false'
+      - if:
+          condition:
+            lambda: return opening;
+          then:
+            - cover.template.publish:
+                id: garage_door
+                current_operation: OPENING
+          else:
+            - cover.template.publish:
+                id: garage_door
+                current_operation: CLOSING
+      - delay: 25s
+      - lambda: |-
+          id(travel_timed_out) = opening
+            ? !id(open_endstop_binary_sensor).state
+            : !id(close_endstop_binary_sensor).state;
+      - cover.template.publish:
+          id: garage_door
+          current_operation: IDLE
+  - id: refresh_door_state
+    mode: restart
+    then:
+      - if:
+          condition:
+            lambda: |-
+              return id(close_endstop_binary_sensor).has_state()
+                && id(open_endstop_binary_sensor).has_state();
+          then:
+            - if:
+                condition:
+                  and:
+                    - binary_sensor.is_on: close_endstop_binary_sensor
+                    - binary_sensor.is_on: open_endstop_binary_sensor
+                then:
+                  - script.stop: monitor_door_travel
+                  - cover.template.publish:
+                      id: garage_door
+                      current_operation: IDLE
+                else:
+                  - if:
+                      condition:
+                        binary_sensor.is_on: close_endstop_binary_sensor
+                      then:
+                        - script.stop: monitor_door_travel
+                        - globals.set:
+                            id: travel_timed_out
+                            value: 'false'
+                        - globals.set:
+                            id: door_stop_requested
+                            value: 'false'
+                        - cover.template.publish:
+                            id: garage_door
+                            state: CLOSED
+                            current_operation: IDLE
+                      else:
+                        - if:
+                            condition:
+                              binary_sensor.is_on: open_endstop_binary_sensor
+                            then:
+                              - script.stop: monitor_door_travel
+                              - globals.set:
+                                  id: travel_timed_out
+                                  value: 'false'
+                              - globals.set:
+                                  id: door_stop_requested
+                                  value: 'false'
+                              - cover.template.publish:
+                                  id: garage_door
+                                  state: OPEN
+                                  current_operation: IDLE
+
 binary_sensor:
   - platform: template
     name: "Garage Door Is Jammed"
     id: is_jammed
     device_class: problem
+    lambda: |-
+      if (!id(close_endstop_binary_sensor).has_state()
+          || !id(open_endstop_binary_sensor).has_state()) return {};
+      return id(travel_timed_out) || (id(close_endstop_binary_sensor).state
+        && id(open_endstop_binary_sensor).state);
   - platform: template
     name: "Garage Door Is Open"
     id: is_open
     device_class: garage_door
-    
+    lambda: |-
+      if (!id(close_endstop_binary_sensor).has_state()
+          || !id(open_endstop_binary_sensor).has_state()) return {};
+      if (id(close_endstop_binary_sensor).state && id(open_endstop_binary_sensor).state) return {};
+      return !id(close_endstop_binary_sensor).state;
   - platform: gpio
     pin:
       number: D3
@@ -29,35 +139,20 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    name: "Garage Door Close Sensor"
     id: close_endstop_binary_sensor
     internal: true
-    on_press:
-       - cover.template.publish:
-           id: garage_door
-           state: CLOSED
-           current_operation: IDLE
-       - binary_sensor.template.publish:
-          id: is_jammed
-          state: OFF
-       - binary_sensor.template.publish:
-          id: is_open
-          state: OFF
-    on_release: 
-       - cover.template.publish:
-           id: garage_door
-           current_operation: OPENING    
-       - binary_sensor.template.publish:
-          id: is_open
-          state: ON
-       - delay: 25s
-       - if:
-           condition:
-             binary_sensor.is_off: open_endstop_binary_sensor
-           then: 
-              - binary_sensor.template.publish:
-                  id: is_jammed
-                  state: ON
+    filters:
+      - delayed_on_off: 50ms
+    on_state:
+      - script.execute: refresh_door_state
+    on_release:
+      - if:
+          condition:
+            lambda: return !id(door_stop_requested) && !id(open_endstop_binary_sensor).state;
+          then:
+            - script.execute:
+                id: monitor_door_travel
+                opening: true
   - platform: gpio
     pin:
       number: D2
@@ -65,56 +160,77 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    name: "Garage Door Open Sensor"
     id: open_endstop_binary_sensor
     internal: true
-    on_press:
-       - cover.template.publish:
-           id: garage_door
-           state: OPEN
-           current_operation: IDLE
-       - binary_sensor.template.publish:
-          id: is_jammed
-          state: OFF
-    on_release: 
-       - cover.template.publish:
-           id: garage_door
-           current_operation: CLOSING  
-       - delay: 25s
-       - if:
-           condition:
-             binary_sensor.is_off: close_endstop_binary_sensor
-           then: 
-              - binary_sensor.template.publish:
-                  id: is_jammed
-                  state: ON
+    filters:
+      - delayed_on_off: 50ms
+    on_state:
+      - script.execute: refresh_door_state
+    on_release:
+      - if:
+          condition:
+            lambda: return !id(door_stop_requested) && !id(close_endstop_binary_sensor).state;
+          then:
+            - script.execute:
+                id: monitor_door_travel
+                opening: false
+
 cover:
   - platform: template
     id: garage_door
     name: "Garage Door"
     device_class: garage
+    assumed_state: true
     open_action:
-        - if:
-           condition:
-             - and:
-               - switch.is_off: virtual_lock
-               - binary_sensor.is_on: close_endstop_binary_sensor
-           then: 
-             - switch.turn_on: door_relay
+      - if:
+          condition:
+            and:
+              - switch.is_off: virtual_lock
+              - binary_sensor.is_on: close_endstop_binary_sensor
+              - binary_sensor.is_off: open_endstop_binary_sensor
+              - not:
+                  script.is_running: pulse_door_relay
+          then:
+            - globals.set:
+                id: door_stop_requested
+                value: 'false'
+            - script.execute:
+                id: monitor_door_travel
+                opening: true
+            - script.execute: pulse_door_relay
     close_action:
       - if:
-           condition:
-             - and:
-               - switch.is_off: virtual_lock
-               - binary_sensor.is_on: open_endstop_binary_sensor
-           then: 
-             - switch.turn_on: door_relay
+          condition:
+            and:
+              - switch.is_off: virtual_lock
+              - binary_sensor.is_on: open_endstop_binary_sensor
+              - binary_sensor.is_off: close_endstop_binary_sensor
+              - not:
+                  script.is_running: pulse_door_relay
+          then:
+            - globals.set:
+                id: door_stop_requested
+                value: 'false'
+            - script.execute:
+                id: monitor_door_travel
+                opening: false
+            - script.execute: pulse_door_relay
     stop_action:
       - if:
-           condition:
-             - and:
-               - switch.is_off: virtual_lock
-               - binary_sensor.is_off: close_endstop_binary_sensor
-               - binary_sensor.is_off: open_endstop_binary_sensor
-           then: 
-             - switch.turn_on: door_relay
+          condition:
+            and:
+              - switch.is_off: virtual_lock
+              - binary_sensor.is_off: close_endstop_binary_sensor
+              - binary_sensor.is_off: open_endstop_binary_sensor
+              - script.is_running: monitor_door_travel
+              - not:
+                  script.is_running: pulse_door_relay
+          then:
+            - globals.set:
+                id: door_stop_requested
+                value: 'true'
+            - script.stop: monitor_door_travel
+            - script.execute: pulse_door_relay
+            - cover.template.publish:
+                id: garage_door
+                current_operation: IDLE

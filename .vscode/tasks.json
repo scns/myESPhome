@@ -1,7 +1,20 @@
 {
-    "version": "2.0.0",
-    "recommendations": [
-      "esphome.esphome-vscode",
-      "redhat.vscode-yaml"
-    ]
-  }
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Check device catalogue",
+      "type": "process",
+      "command": "python",
+      "args": ["scripts/project.py", "check"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Validate project",
+      "type": "process",
+      "command": "python",
+      "args": ["scripts/project.py", "validate"],
+      "dependsOn": "Check device catalogue",
+      "problemMatcher": []
+    }
+  ]
+}

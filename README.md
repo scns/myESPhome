@@ -1,223 +1,152 @@
 # MyESPHome
 
-| Repository Status | myESPhome Repo |
-| :--- | :--- |
-|  [![last commit time][github-last-commit]][github-master] [![GitHub Activity][commits-shield]][commits] |  [![Made for ESPHome](https://img.shields.io/badge/Made_for-ESPHome-black?logo=esphome)](https://esphome.io) |
-| [![License][license-shield]](LICENSE) [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] | [![Contributors][contributors-shield]][contributors-url] [![GitHub release](https://img.shields.io/github/release/scns/myESPhome.svg)](https://GitHub.com/scns/myESPhome/releases) |
-| [![CodeFactor](https://www.codefactor.io/repository/github/scns/myesphome/badge)](https://www.codefactor.io/repository/github/scns/myesphome) | |
+ESPHome configurations for Home Assistant, with a static website for initial USB
+installation through ESP Web Tools.
 
-|  ![myESPhomelogo](./static/stuff/logo.webp) |
+Website: [myesphome.assistantathome.nl](https://myesphome.assistantathome.nl/).
 
-## myESPhome Projects
+## Device status
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+| Device | Status | Target hardware |
+| --- | --- | --- |
+| Luxmeter | Supported; web installation | WEMOS D1 Mini / ESP8266 and BH1750 |
+| IKEA Vindriktning | Supported; web installation | WEMOS D1 Mini / ESP8266 and PM1006 |
+| Bluetooth proxy | Supported; web installation | ESP32-C3 DevKitM-1, 4 MB flash |
+| Garage door | Experimental; personal installation only | WEMOS D1 Mini / ESP8266, relay and two endstops |
+| DS18B20, DS18B20 beta, DHT22, FORNUFTIG, UPPATVIND, KEMO M152 | Concept; not published | Pinouts and device implementations still required |
 
-## Intro
+The source of truth is [static/devices.json](static/devices.json). A working
+configuration is not automatically proof of hardware compatibility. Bluetooth
+proxy firmware in this repository targets **ESP32-C3**, not arbitrary ESP32 boards.
+ESP32-S2 has no Bluetooth support.
 
-Welcome to MyESPHome - a collection of ESPHome projects designed to make ESP board integration with Home Assistant easier and more accessible.
+## Initial web installation
 
-This repository contains ready-to-use ESPHome configurations for various sensors and devices, along with a web interface that allows you to flash firmware directly to your ESP boards using your browser.
+1. Open the website over HTTPS in desktop Chrome or Edge with WebSerial support.
+2. Select the device and check the **Required board** label.
+3. Connect the matching board with a USB data cable and install the firmware.
+4. Configure Wi-Fi through Improv Serial or the fallback access point.
+5. Complete the secured setup below before normal use.
 
-## How to Use
+The installer checks the selected manifest before enabling installation. Only
+supported devices are offered. The site and its firmware are published together.
+The source `static/` directory alone does not contain firmware, so a local preview
+will show unavailable firmware until publication artifacts are present.
 
-### Option 1: Web Interface (Recommended)
+## Secure device setup
 
-Visit our website at [https://myesphome.assistantathome.nl/](https://myesphome.assistantathome.nl/) where you can:
+Public firmware is bootstrap firmware: it cannot contain your personal device
+key. The API initially permits local setup. There is no public web server or
+unauthenticated ESPHome OTA listener. ESP8266 public firmware has no HTTP firmware
+updates because its HTTP Request component cannot verify TLS certificates. The
+ESP32-C3 public update path uses certificate verification.
 
-1. **Browse available projects** - Select from various pre-configured devices
-2. **Connect your ESP board** - Use the "Connect & Install Firmware" button to flash directly via your browser
-3. **No installation required** - Everything works through WebSerial in modern browsers (Chrome/Edge 89+, Firefox with experimental features)
+For permanent use, generate your own configuration with a unique API key,
+encrypted OTA and a protected fallback access point:
 
-### Option 2: Manual Installation
+```sh
+python -m pip install -r requirements-dev.txt
+python scripts/secure_setup.py luxmeter --name living-room-luxmeter
+```
 
-1. **Download the YAML files** from the `esphome/` folder
-2. **Customize the configuration** to match your setup (WiFi credentials, device names, etc.)
-3. **Compile and upload** using ESPHome CLI or Home Assistant ESPHome integration
+Edit `esphome/private/living-room-luxmeter/secrets.yaml` with your Wi-Fi details,
+then use a **USB** connection for the first secured installation:
 
-### Prerequisites
+```sh
+python -m esphome run esphome/private/living-room-luxmeter/device.yaml
+```
 
-- ESP32 or ESP8266 board
-- USB cable for initial flashing
-- Modern web browser with WebSerial support (Chrome/Edge 89+ recommended)
-- Home Assistant with ESPHome integration (for device management)
+Select the serial port when prompted. For a Bluetooth proxy, substitute
+`bluetoothproxy`; for a garage door, substitute `garagedoor`. Never install a
+concept configuration as a working device.
 
-### List of all devices in this project
+Both generated files are ignored by Git. The script refuses to overwrite an
+existing device and never prints credentials. Store your secrets securely. Add
+the device to Home Assistant using its personal API key. Later updates use the
+same private configuration and encrypted ESPHome OTA. Public HTTP updates are
+removed from private configurations so they cannot replace your personal keys
+with bootstrap firmware. The generator disables dashboard import in the private
+configuration for the same reason.
 
-- Luxmeter (operational)
-- Bluetooth proxy (operational)
-- Garage door opener (coming soon)
-- IKEA Air Quality Meter (coming soon)
+If you already have an adopted device, preserve its working keys and passwords.
+Do not replace them with freshly generated keys during an OTA migration. Review
+the [ESPHome OTA migration instructions](https://esphome.io/components/ota/esphome/)
+or use USB for the new secured configuration.
 
-## Project Details
+The device web server is disabled. If you explicitly need one, enable it only in
+your private configuration with `web_server.auth` and a unique password stored in
+`secrets.yaml`; keep it off the public internet.
+
+## Hardware
 
 ### Luxmeter
 
-A light sensor project using the BH1750 sensor to measure ambient light levels in lux.
-
-**Features:**
-
-- Accurate light measurement (1-65535 lux)
-- Auto-discovery in Home Assistant
-- Low power consumption
-- I2C interface
-
-**Use cases:**
-
-- Automatic lighting control
-- Garden/greenhouse monitoring
-- Security lighting automation
-- Energy saving applications
-
-#### Parts List
-
-| Description | Quantity | Notes |
-| :--- | :---: | :--- |
-| WEMOS D1 Mini | 1 | ESP8266-based development board |
-| BH1750 sensor | 1 | Digital light intensity sensor |
-| Jumper wires | 4 | For I2C connections |
-| Breadboard (optional) | 1 | For prototyping |
-
-> **Note:** Some earlier documentation or sources may refer to the 'BH1780' sensor, but the correct model for this project is the 'BH1750' digital light sensor.
-
-#### Wiring
-
 | BH1750 | WEMOS D1 Mini |
-| :--- | :--- |
-| VCC | 3.3V |
+| --- | --- |
+| VCC | 3.3 V |
 | GND | GND |
-| SCL | D1 (GPIO5) |
-| SDA | D2 (GPIO4) |
+| SCL | D1 / GPIO5 |
+| SDA | D2 / GPIO4 |
 
-#### Pinout
+The sensor address is `0x23`; readings are taken every 30 seconds. The sensor is
+BH1750, not BH1780.
 
-![pinout](./static/stuff/pinout.png)
+![D1 Mini pinout](static/stuff/pinout.png)
 
-### Bluetooth Proxy
+### Vindriktning
 
-Turn your ESP32 into a Bluetooth proxy for Home Assistant, extending the range of your Bluetooth devices.
+The PM1006 sensor sends serial data to D2 at 9600 baud. Follow the actual device
+wiring and share ground. Its PM2.5 reading is a concentration measurement, not a
+calculated air quality index.
 
-**Features:**
+### Garage door
 
-- Bluetooth LE proxy functionality
-- Extends Home Assistant's Bluetooth range
-- Auto-discovery in Home Assistant
-- Works with ESP32 only (Bluetooth LE required)
+Read [commissioning and limitations](docs/maintenance.md#garage-door-commissioning)
+before installation. The relay starts off, the virtual lock starts on, both
+endstops are filtered and travel timers are cancelled when motion stops or an
+endstop is reached. Contradictory endstops prevent commands. Hardware verification
+is required, including D3/GPIO0 boot behavior and the physical door controller.
 
-**Use cases:**
+## Development and publication
 
-- Extend Bluetooth coverage throughout your home
-- Bridge Bluetooth devices to Home Assistant
-- Monitor Bluetooth beacons and sensors
-- Support for Xiaomi, Govee, and other Bluetooth sensors
+Python 3.12 and Node.js are required for local checks:
 
-**Compatible devices:**
+```sh
+python -m pip install -r requirements-dev.txt
+python scripts/project.py check
+python -m unittest discover -s tests
+node --test tests/installer.test.cjs
+python scripts/project.py validate
+```
 
-- ESP32 (any variant with Bluetooth LE)
-- ESP32-C3, ESP32-S3, ESP32-S2
+**Pushes and pull requests validate only; they do not build firmware files.**
+Publishing a GitHub release or manually running **Publish website and firmware**
+builds all supported devices and deploys the complete website. A missing artifact,
+wrong chip family, unsafe binary path or OTA checksum mismatch blocks deployment.
+Release dashboard imports are pinned to the exact build commit.
 
-## Getting Started
-
-1. **Visit the website**: Go to [https://myesphome.assistantathome.nl/](https://myesphome.assistantathome.nl/)
-2. **Select your project**: Choose from the available device configurations
-3. **Connect your ESP**: Click "Connect & Install Firmware" and select your device
-4. **Configure**: Update WiFi credentials and device settings as needed
-5. **Add to Home Assistant**: The device will automatically appear in Home Assistant
-
-## Contributing
-
-We welcome contributions! Here's how you can help:
-
-- **Submit new device configurations** by creating a pull request
-- **Report issues** if you find bugs or have suggestions
-- **Improve documentation** by enhancing README files or adding examples
-- **Test configurations** on different hardware setups
-
-### Adding a New Device
-
-1. Fork this repository
-2. Create your ESPHome YAML configuration in the `esphome/` folder
-3. Add corresponding package files in `esphome/package/` if needed
-4. Update the build workflow in `.github/workflows/build.yml`
-5. Test your configuration
-6. Submit a pull request with a clear description
+See [maintenance instructions](docs/maintenance.md) for version updates, new
+devices, GitHub Pages setup and release behavior. See [Docker instructions](.docker/readme.md)
+for a lightweight local website preview and ESPHome containers.
 
 ## Troubleshooting
 
-### Web Installation Issues
+* Use desktop Chrome or Edge, HTTPS (or localhost) and a USB data cable.
+* If the board is not detected, check its USB driver and boot/download mode.
+* If installation firmware is unavailable, wait for a successful website publication.
+* If Home Assistant cannot find the device, check Wi-Fi, network reachability,
+  mDNS and the encryption key used by your private configuration.
+* If a secured OTA update fails, use the existing device key; key changes require
+  the appropriate ESPHome migration procedure or a USB flash.
 
-#### "WebSerial not supported"
+## Contributing and support
 
-- Use Chrome/Edge 89+ or Firefox with `dom.serial.enabled` set to true
-- Ensure you're accessing the site via HTTPS
+Please read [CONTRIBUTING.md](CONTRIBUTING.md). Report problems through
+[GitHub issues](https://github.com/scns/myESPhome/issues), including the board,
+configuration revision, ESPHome version and logs with credentials removed.
 
-#### Device not detected
+[ESPHome documentation](https://esphome.io) ·
+[ESP Web Tools](https://esphome.github.io/esp-web-tools/) ·
+[Home Assistant](https://www.home-assistant.io/)
 
-- Check USB cable (data cable, not power-only)
-- Try a different USB port
-- Install ESP32/ESP8266 drivers if needed
-
-#### Upload fails
-
-- Put ESP in download mode (hold BOOT button while connecting)
-- Check if another program is using the serial port
-- Try a different USB cable
-
-### Home Assistant Integration
-
-#### Device not appearing
-
-- Ensure ESP and Home Assistant are on the same network
-- Check ESPHome integration is installed
-- Verify device is connected to WiFi (check router/ESPHome logs)
-
-#### Connection issues
-
-- Verify WiFi credentials in the configuration
-- Check firewall settings
-- Ensure mDNS is working on your network
-
-## Resources
-
-- **ESPHome Documentation**: [https://esphome.io](https://esphome.io)
-- **Home Assistant**: [https://www.home-assistant.io](https://www.home-assistant.io)
-- **ESP Web Tools**: [https://esphome.github.io/esp-web-tools/](https://esphome.github.io/esp-web-tools/)
-- **ESPHome Discord**: Join the community for support and discussions
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Support
-
-You can contact me in several ways.
-
-### GitHub
-
-Create an "issue" and I will respond as quickly as possible.
-
-### Discord
-
-I am an active member of the Huizebruin Domotica Community Discord group. If you have any questions, you can always join this channel and contact me (schmm).
-You can also connect with other Home Assistant users!
-
-[![Discord][discord-shield]][discord]
-
-### E-mail
-
-You can also always send me an email at myesphome@[tobedetermined].nl. I will respond as quickly as possible and will always try to respond within 2 business days.
-
-[commits-shield]: https://img.shields.io/github/commit-activity/m/scns/myESPhome.svg
-[discord]: https://discord.gg/hKPgwWNHwH
-[discord-shield]: https://img.shields.io/discord/723629686093119650.svg?logo=discord&color=7289da
-[commits]: https://github.com/scns/myESPhome/commits/main
-[github-last-commit]: https://img.shields.io/github/last-commit/scns/myESPhome.svg?style=plasticr
-[github-master]: https://github.com/scns/myESPhome/commits/main
-[license-shield]: https://img.shields.io/github/license/scns/myESPhome.svg
-[contributors-url]: https://github.com/scns/myESPhome/graphs/contributors
-[contributors-shield]: https://img.shields.io/github/contributors/scns/myESPhome.svg
-[forks-shield]: https://img.shields.io/github/forks/scns/myESPhome.svg
-[forks-url]: https://github.com/scns/myESPhome/network/members
-[stars-shield]: https://img.shields.io/github/stars/scns/myESPhome.svg
-[stars-url]: https://github.com/scns/myESPhome/stargazers
-[issues-shield]: https://img.shields.io/github/issues/scns/myESPhome.svg
-[issues-url]: https://github.com/scns/myESPhome/issues
+Licensed under the [MIT License](LICENSE).

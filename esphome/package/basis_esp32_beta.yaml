@@ -1,4 +1,2 @@
-# ⬇ Enable logging ⬇ # 
-logger:
-  level: INFO
-
+packages:
+  common: !include basis_esp32.yaml

@@ -19,28 +19,32 @@
     return manifest;
   }
 
-  function createSelector({button, status, board, fetchManifest}) {
+  function createSelector({button, status, board, fetchManifest, onStateChange = () => {}}) {
     let generation = 0;
     return async function select(device) {
       const current = ++generation;
       button.hidden = true;
       button.removeAttribute('manifest');
       board.textContent = device.board || '';
+      onStateChange('checking');
       if (device.status !== 'supported') {
         status.textContent = 'This project is not available for web installation.';
+        onStateChange('unavailable');
         return;
       }
       status.textContent = 'Checking firmware availability…';
       const path = `${device.id}/manifest.json`;
       try {
-        validateManifest(await fetchManifest(path), device);
+        const manifest = validateManifest(await fetchManifest(path), device);
         if (current !== generation) return;
         button.setAttribute('manifest', path);
         button.hidden = false;
         status.textContent = `Ready to install ${device.name}. Check that your board matches the model above.`;
+        onStateChange('ready', manifest);
       } catch (error) {
         if (current !== generation) return;
         status.textContent = 'Firmware is unavailable. Please try again after the next website release.';
+        onStateChange('unavailable');
         console.error(error);
       }
     };

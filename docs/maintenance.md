@@ -36,6 +36,27 @@ the `github-pages` environment if approvals are desired. A manual publication ru
 publishes its selected ref; select the intended release commit. Normal pushes do
 not update the live website.
 
+## Website preview
+
+The website source is in `static/`. Run a local static server from the repository
+root and open `http://localhost:8000`:
+
+```sh
+python -m http.server 8000 --directory static
+```
+
+The home, parts and contact pages are standalone HTML documents. Project cards,
+filters and installer choices all use `static/devices.json`; the JavaScript marks
+concepts and experimental configurations separately and never offers them for web
+installation. The initial preview has no firmware artifacts, so the install button
+remains unavailable until the matching release manifests are served.
+
+Fonts load from Google Fonts with local system-font fallbacks. ESP Web Tools loads
+only on the installation page. Bootstrap, jQuery, fetched page fragments and the
+previous analytics script are no longer used by the website. All other artwork,
+icons and photographs are local. `.nojekyll` keeps the static site independent of
+Jekyll when served by GitHub Pages.
+
 ## Local checks
 
 With Python 3.12 and Node.js installed:

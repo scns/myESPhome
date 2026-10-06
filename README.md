@@ -5,6 +5,12 @@ installation through ESP Web Tools.
 
 Website: [myesphome.assistantathome.nl](https://myesphome.assistantathome.nl/).
 
+The responsive website includes a filterable project collection, a board-specific
+web installer, setup instructions, FAQs, parts and printable cases, and contact
+information. It uses plain HTML, CSS and JavaScript in `static/`; no frontend build
+or npm installation is required. All internal paths are relative, so the site also
+works under a GitHub Pages repository path.
+
 ## Device status
 
 | Device | Status | Target hardware |

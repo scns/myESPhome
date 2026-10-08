@@ -1,6 +1,6 @@
 services:
   static_preview:
-    image: python:3.12-alpine
+    image: python:3.14-alpine
     command: python -m http.server 8000 --bind 0.0.0.0 --directory /site
     ports:
       - "127.0.0.1:8080:8000"
